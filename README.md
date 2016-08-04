@@ -21,8 +21,8 @@ now you have 3 new cmnds.
 ```shell
 ex
     ex:clear:all        Clear cache/config/route/view/compiled/pass-resets
-    ex:fine:tune        optimize & cache route/config
-    ex:make:all         Make (Controller,Model,Migration,Seeder,Route,View)
+    ex:fine:tune        optimize & cache config
+    ex:make:all         Make (Controller,Model,Migration,Seeder,Route,View,Validation)
 ```
 **none of theme require any interaction except the `ex:make:all` which will ask you for the class name.**
 
@@ -52,7 +52,7 @@ ex
 >
 > - Validation [y/N]
 >  - create a new folder `App/Http/Validations` equal to the class name + file for **'StoreValidation'** [Read More](https://gist.github.com/ctf0/bb137c135b6d9383184d4deec0b24d56)
->  - for authorization, its recommended to use the model way instead as it have more flexibility (using a view, bind a msg)
+>  - for authorization [Read More](https://gist.github.com/ctf0/5cde91273c33ade6da6e2a0c8b7f47bf)
 
 ## v5.3
 - soon.
@@ -60,8 +60,8 @@ ex
 
 ## ToDo
 
-* [ ] Turn into Package.
 * [ ] Find away to implement `route:cache` as currently it gives error.
 * [ ] Prepopulate the `ModelTableSeerder::run()` with `Model::create()`.
-* [ ] Find away to automatically register the 'ModelTableSeerder' class into the `DatabaseSeeder::run()`.
+* [ ] Find away to automatically register the **'ModelTableSeerder'** into the `DatabaseSeeder::run()`.
 * [ ] Make `Models Folder` and add **BaseModel** while make others extend it.
+* [ ] Turn into Package.
