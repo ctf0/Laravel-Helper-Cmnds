@@ -1,4 +1,6 @@
-# v5.2
+## This Is Mostly For Personal Use, If You Like What U See :thumbsup: Go Ahead And Give It A Try :heart_eyes:
+
+## v5.2
 1- put the files into `App/Console/Commands`
 
 2- add the below to `App/Console/Kernel.php`
@@ -42,10 +44,24 @@ ex
 >  - php artisan make:seeder [y/N]
 >
 > - Rotues [y/N]
->  - creates a new folder `App/Http/Routes` & add new route files equal to the class name
->  - add a loop with req_once in `App/Http/routes.php` to include all the files from the `App/Http/Routes` folder
+>  - creates a new folder `App/Http/Routes` & add new route file equal to the class name
+>  - append a loop to `App/Http/routes.php` to include all the files from the `App/Http/Routes` folder
+>
 > - Views [y/N]
->  - create a new folder in `Resources/Views` equal to the class name + a generic file `index.blade.php`
+>  - create a new folder in `Resources/Views` equal to the class name + files for **'index/create/show/edit'**
+>
+> - Validation [y/N]
+>  - create a new folder `App/Http/Validations` equal to the class name + file for **'StoreValidation'** [Read More](https://gist.github.com/ctf0/bb137c135b6d9383184d4deec0b24d56)
+>  - for authorization, its recommended to use the model way instead as it have more flexibility (using a view, bind a msg)
 
-# v5.3
+## v5.3
 - soon.
+
+
+## ToDo
+
+* [ ] Turn into Package.
+* [ ] Find away to implement `route:cache` as currently it gives error.
+* [ ] Prepopulate the `ModelTableSeerder::run()` with `Model::create()`.
+* [ ] Find away to automatically register the 'ModelTableSeerder' class into the `DatabaseSeeder::run()`.
+* [ ] Make `Models Folder` and add **BaseModel** while make others extend it.
