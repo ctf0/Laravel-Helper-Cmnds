@@ -39,7 +39,6 @@ class FineTune extends Command
     public function handle()
     {
         Artisan::call('optimize');
-        Artisan::call('route:cache');
         Artisan::call('config:cache');
 
         $this->info('All Done');

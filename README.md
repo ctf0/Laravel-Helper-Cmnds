@@ -34,7 +34,6 @@ ex
 
 2- ex:fine:tune
 >  - php artisan optimize
->  - php artisan route:cache
 >  - php artisan config:cache
 
 3- ex:make:all
