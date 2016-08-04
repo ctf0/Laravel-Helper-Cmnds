@@ -23,7 +23,7 @@ now you have 3 new cmnds.
 ex
     ex:clear:all        Clear cache/config/route/view/compiled/pass-resets
     ex:fine:tune        optimize & cache route/config
-    ex:make:all         Make (Model,Controller,Migration,Seeder,Route,View)
+    ex:make:all         Make (Controller,Model,Migration,Seeder,Route,View)
 ```
 **none of theme require any interaction except the `ex:make:all` which will ask you for the class name.**
 
@@ -50,8 +50,6 @@ ex
 >  - add a loop with req_once in `App/Http/routes.php` to include all the files from the `App/Http/Routes` folder
 > - Views [y/N]
 >  - create a new folder in `Resources/Views` equal to the class name + a generic file `index.blade.php`
-
-***
 
 ## v5.3
 - soon.
