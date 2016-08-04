@@ -1,7 +1,4 @@
-# Laravel-Cmnds
-Some Helper Console Cmnds For Laravel To Speed The Workflow
-
-## v5.2
+# v5.2
 1- put the files into `App/Console/Commands`
 
 2- add the below to `App/Console/Kernel.php`
@@ -51,5 +48,5 @@ ex
 > - Views [y/N]
 >  - create a new folder in `Resources/Views` equal to the class name + a generic file `index.blade.php`
 
-## v5.3
+# v5.3
 - soon.
