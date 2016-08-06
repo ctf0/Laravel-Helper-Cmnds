@@ -1,6 +1,6 @@
 This Is Mostly For Personal Use, If You Like What U See :thumbsup: Go Ahead And Give It A Try :heart_eyes:
 
-## v5.2
+# v5.2
 1- put the files into `App/Console/Commands`
 
 2- add the below to `App/Console/Kernel.php`
@@ -54,11 +54,11 @@ ex
 >  - create a new folder `App/Http/Validations` equal to the class name + file for **'StoreValidation'** [Read More](https://gist.github.com/ctf0/bb137c135b6d9383184d4deec0b24d56)
 >  - for authorization [Read More](https://gist.github.com/ctf0/5cde91273c33ade6da6e2a0c8b7f47bf)
 
-## v5.3
+# v5.3
 - soon.
 
 
-## ToDo
+### #ToDo
 
 * [ ] Find away to implement `route:cache` as currently it gives error.
 * [ ] Prepopulate the `ModelTableSeerder::run()` with `Model::create()`.
