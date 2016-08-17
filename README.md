@@ -10,6 +10,7 @@ protected $commands = [
     Commands\ClearAll::class,
     Commands\MakeAll::class,
     Commands\FineTune::class,
+    Commands\ReMigrate::class,
 ];
 ```
 
@@ -53,6 +54,11 @@ ex
 > - Validation [y/N]
 >  - create a new folder `App/Http/Validations` equal to the class name + file for **'StoreValidation'** [Read More](https://gist.github.com/ctf0/bb137c135b6d9383184d4deec0b24d56)
 >  - for authorization [Read More](https://gist.github.com/ctf0/5cde91273c33ade6da6e2a0c8b7f47bf)
+
+4- ex:re:migrate
+>  - php artisan migrate:refresh --seed
+>  - php artisan cache:clear
+
 
 # v5.3
 - soon.
