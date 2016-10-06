@@ -67,8 +67,6 @@ ex
 
 ### #ToDo
 
-* [ ] Find away to implement `route:cache` as currently it gives error.
-* [ ] Prepopulate the `ModelTableSeerder::run()` with `Model::create()`.
 * [ ] Find away to automatically register the **'ModelTableSeerder'** into the `DatabaseSeeder::run()`.
 * [ ] Make `Models Folder` and add **BaseModel** while make others extend it.
 * [ ] Turn into Package.
