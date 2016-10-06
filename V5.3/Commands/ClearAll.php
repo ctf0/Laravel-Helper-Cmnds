@@ -3,29 +3,27 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Artisan;
 
-class FineTune extends Command
+class ClearAll extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'ex:fine:tune';
+    protected $signature = 'ex:clear:all';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'optimize & cache route/config';
+    protected $description = 'Clear cache/config/route/view/compiled/pass-resets';
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -39,11 +37,15 @@ class FineTune extends Command
      */
     public function handle()
     {
-        Artisan::call('optimize');
-        Artisan::call('config:cache');
-        $comp = new Process("composer dump-autoload");
-        $comp->setWorkingDirectory(base_path());
-        $comp->run();
+        Artisan::call('clear-compiled');
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
+        Artisan::call('route:clear');
+        Artisan::call('view:clear');
+
+        if (Schema::hasTable('password_resets')) {
+            Artisan::call('auth:clear-resets');
+        }
 
         $this->info('All Done');
     }

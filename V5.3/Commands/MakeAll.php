@@ -85,7 +85,7 @@ class MakeAll extends Command
      */
     protected function createRoute()
     {
-        $dir     = app_path('Http/Routes');
+        $dir     = base_path('routes/Routes');
         $content =
 <<<EOT
 <?php
@@ -101,12 +101,13 @@ EOT;
         if ( ! File::exists($dir)) {
             File::makeDirectory($dir);
         }
+
         if ( ! File::exists("$dir/$this->class.php")) {
             File::put("$dir/$this->class.php", $content);
         }
 
         // add loop to the main routes.php
-        $route_file         = app_path('Http/routes.php');
+        $route_file         = base_path('routes/web.php');
         $search             = 'foreach (File::allFiles(__DIR__.\'/Routes\')';
         $route_file_content =
 <<<EOT
@@ -169,6 +170,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class StoreValidation
 {
+    use ValidatesRequests;
+
     public function validate(\$request)
     {
         \$rules = [

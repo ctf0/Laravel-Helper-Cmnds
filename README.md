@@ -1,6 +1,5 @@
-This Is Mostly For Personal Use, If You Like What U See :thumbsup: Go Ahead And Give It A Try :heart_eyes:
-
 # v5.2
+### Installation
 1- put the files into `App/Console/Commands`
 
 2- add the below to `App/Console/Kernel.php`
@@ -46,13 +45,13 @@ ex
 >
 > - Rotues [y/N]
 >  - creates a new folder `App/Http/Routes` & add new route file equal to the class name
->  - append a loop to `App/Http/routes.php` to include all the files from the `App/Http/Routes` folder
+>  - append a loop to `App/Http/routes.php` to include all the files from the `App/Http/Routes` folder "happens only once"
 >
 > - Views [y/N]
 >  - create a new folder in `Resources/Views` equal to the class name + files for **'index/create/show/edit'**
 >
 > - Validation [y/N]
->  - create a new folder `App/Http/Validations` equal to the class name + file for **'StoreValidation'** [Read More](https://gist.github.com/ctf0/bb137c135b6d9383184d4deec0b24d56)
+>  - create a new folder `App/Http/Validations` equal to the class name + file for **'StoreValidation'** [Read More](https://ctf0.wordpress.com/2016/10/01/custom-validation-with-the-same-workflow-laravel-v5-2/)
 >  - for authorization [Read More](https://gist.github.com/ctf0/5cde91273c33ade6da6e2a0c8b7f47bf)
 
 4- ex:re:migrate
@@ -61,7 +60,9 @@ ex
 
 
 # v5.3
-- soon.
+**Installation & Usage** same as v5.2 except **#3- ex:make:all (Rotues [y/N])**
+>  - creates a new folder `routes/Routes` & add new route file equal to the class name
+>  - append a loop to `routes.php` to include all the files from the `routes/Routes` folder "happens only once"
 
 
 ### #ToDo

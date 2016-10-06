@@ -3,29 +3,25 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
-use Illuminate\Support\Facades\Artisan;
 
-class FineTune extends Command
+class ReMigrate extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'ex:fine:tune';
+    protected $signature = 'ex:re:migrate';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'optimize & cache route/config';
+    protected $description = 'remigrate & seed';
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -39,12 +35,9 @@ class FineTune extends Command
      */
     public function handle()
     {
-        Artisan::call('optimize');
-        Artisan::call('config:cache');
-        $comp = new Process("composer dump-autoload");
-        $comp->setWorkingDirectory(base_path());
-        $comp->run();
-
-        $this->info('All Done');
+        Artisan::call('cache:clear');
+        Artisan::call('migrate:refresh', [
+            '--seed' => true,
+        ]);
     }
 }
