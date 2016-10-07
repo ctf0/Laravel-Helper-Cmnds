@@ -20,7 +20,7 @@ now you have 3 new cmnds.
 
 ```shell
 ex
-    ex:clear:all        Clear cache/config/route/view/compiled/pass-resets
+    ex:clear:all        Clear (cache,config,route,view,compiled,pass-resets)
     ex:fine:tune        optimize & cache config
     ex:make:all         Make (Controller,Model,Migration,Seeder,Route,View,Validation)
 ```
