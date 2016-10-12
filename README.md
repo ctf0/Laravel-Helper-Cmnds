@@ -1,6 +1,6 @@
 # v5.2
 ### Installation
-1- copy the folder into `App/Console`
+1- copy the `Commands` folder to `App/Console`
 
 2- add the below to `App/Console/Kernel.php`
 
@@ -19,11 +19,9 @@ protected $commands = [
 now you have 3 new cmnds.
 
 ```shell
-<<<<<<< HEAD
 ex:clear:all   Clear (Cache/Config/Route-Cache/View/Compiled/Pass-Resets)
 ex:fine:tune   optimize & cache config
 ex:make:all    Make (Controller/Model/Migration/Seeder/Route/View/Validation)
->>>>>>> origin/master
 ```
 > none of the cmnds require any interaction except the `ex:make:all` which will ask you for the class name.
 
