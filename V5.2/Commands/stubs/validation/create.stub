@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Validations\DummyClass;
+
+use Validator;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+
+class DummyNameValidation
+{
+    use ValidatesRequests;
+
+    public function validate($request)
+    {
+        $rules = [
+            // ...
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        $validator->after(function ($validator) use ($request) {
+            // ...
+        });
+
+        if ($validator->fails()) {
+            throw new ValidationException(
+                $validator,
+                $this->buildFailedValidationResponse(
+                    $request,
+                    $this->formatValidationErrors($validator)
+                )
+            );
+        }
+    }
+}

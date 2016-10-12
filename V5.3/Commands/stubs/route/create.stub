@@ -1,0 +1,39 @@
+<?php
+
+Route::group(['prefix' => 'DummyName'], function () {
+    Route::get('/', [
+        'as'   => 'DummyName.index',
+        'uses' => 'DummyClassController@index',
+        ]
+    );
+    Route::get('create', [
+        'as'   => 'DummyName.create',
+        'uses' => 'DummyClassController@create',
+        ]
+    );
+    Route::post('create', [
+        'as'   => 'DummyName.store',
+        'uses' => 'DummyClassController@store',
+        ]
+    );
+    Route::get('show', [
+        'as'   => 'DummyName.show',
+        'uses' => 'DummyClassController@show',
+        ]
+    );
+    Route::get('edit', [
+        'as'   => 'DummyName.edit',
+        'uses' => 'DummyClassController@edit',
+        ]
+    );
+    Route::patch('update', [
+        'as'   => 'DummyName.update',
+        'uses' => 'DummyClassController@update',
+        ]
+    );
+    Route::delete('destroy', [
+        'as'   => 'DummyName.destroy',
+        'uses' => 'DummyClassController@destroy',
+        ]
+    );
+});

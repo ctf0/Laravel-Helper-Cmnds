@@ -40,7 +40,7 @@ class MakeAll extends Command
      */
     public function handle()
     {
-        $this->class = Str::title($this->ask('What is the Class name ex.abc'));
+        $this->class = title_case($this->ask('What is the Class name ex.abc'));
 
         Artisan::call('make:controller', [
             'name'       => $this->class.'Controller',
@@ -54,8 +54,10 @@ class MakeAll extends Command
 
         if ($this->confirm('Do you wish to make a Seeder? [y|N]')) {
             Artisan::call('make:seeder', [
-                'name' => Str::plural($this->class).'TableSeerder',
+                'name' => str_plural($this->class).'TableSeerder',
             ]);
+
+            $this->addSeeder();
         }
 
         $this->name = Str::lower($this->class);
@@ -79,42 +81,55 @@ class MakeAll extends Command
     }
 
     /**
+     * [addSeeder description].
+     *
+     * @return [type] [description]
+     */
+    protected function addSeeder()
+    {
+        $stub = File::get(__DIR__.'/stubs/db/seeder.stub');
+        $seed = str_replace('DummySeed', str_plural($this->class), $stub);
+        $dir  = database_path('seeds/DatabaseSeeder.php');
+
+        if ( ! str_contains(File::get($dir), str_plural($this->class))) {
+            $file = file($dir);
+            for ($i = 0; $i < count($file); ++$i) {
+                if (strstr($file[$i], '$this->')) {
+                    $file[$i] = $file[$i].$seed;
+                    break;
+                }
+            }
+
+            return File::put($dir, $file);
+        }
+
+        return;
+    }
+
+    /**
      * [createRoute description].
      *
      * @return [type] [description]
      */
     protected function createRoute()
     {
-        $dir     = app_path('Http/Routes');
-        $content =
-<<<EOT
-<?php
-
-Route::group(['prefix' => '$this->name'], function () {
-    // routes here
-});
-
-// or
-// Route::resource('$this->name', '{$this->class}Controller');
-EOT;
+        $dir   = app_path('Http/Routes');
+        $stub  = File::get(__DIR__.'/stubs/route/create.stub');
+        $name  = str_replace('DummyName', $this->name, $stub);
+        $class = str_replace('DummyClass', $this->class, $name);
 
         if ( ! File::exists($dir)) {
             File::makeDirectory($dir);
         }
+
         if ( ! File::exists("$dir/$this->class.php")) {
-            File::put("$dir/$this->class.php", $content);
+            File::put("$dir/$this->class.php", $class);
         }
 
         // add loop to the main routes.php
-        $route_file         = app_path('Http/routes.php');
         $search             = 'foreach (File::allFiles(__DIR__.\'/Routes\')';
-        $route_file_content =
-<<<EOT
-
-foreach (File::allFiles(__DIR__.'/Routes') as \$route_file) {
-    require_once \$route_file->getPathname();
-}
-EOT;
+        $route_file         = app_path('Http/routes.php');
+        $route_file_content = File::get(__DIR__.'/stubs/route/web.stub');
 
         if ( ! str_contains(File::get($route_file), $search)) {
             File::append($route_file, $route_file_content);
@@ -134,17 +149,17 @@ EOT;
             File::makeDirectory($dir);
         }
 
-        // create view files
         $methods = [
-            'index',
             'create',
             'show',
             'edit',
         ];
 
+        $stub = File::get(__DIR__.'/stubs/view/create.stub');
+
         foreach ($methods as $one) {
             if ( ! File::exists("$dir/$one.blade.php")) {
-                File::put("$dir/$one.blade.php", '@extends(\'layouts.app\')');
+                File::put("$dir/$one.blade.php", $stub);
             }
         }
     }
@@ -156,49 +171,24 @@ EOT;
      */
     protected function createValidation()
     {
-        $dir     = app_path("Http/Validations/$this->class");
-        $content =
-<<<EOT
-<?php
-
-namespace App\Http\Validations\\$this->class;
-
-use Validator;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-
-class StoreValidation
-{
-    public function validate(\$request)
-    {
-        \$rules = [
-            // ...
-        ];
-
-        \$validator = Validator::make(\$request->all(), \$rules);
-
-        \$validator->after(function (\$validator) use (\$request) {
-            // ...
-        });
-
-        if (\$validator->fails()) {
-            throw new ValidationException(
-                \$validator,
-                \$this->buildFailedValidationResponse(
-                    \$request,
-                    \$this->formatValidationErrors(\$validator)
-                )
-            );
-        }
-    }
-}
-EOT;
+        $dir   = app_path("Http/Validations/$this->class");
+        $stub  = File::get(__DIR__.'/stubs/validation/create.stub');
+        $class = str_replace('DummyClass', $this->class, $stub);
 
         if ( ! File::exists($dir)) {
             File::makeDirectory($dir, 0755, true);
         }
-        if ( ! File::exists("$dir/StoreValidation.php")) {
-            File::put("$dir/StoreValidation.php", $content);
+
+        $methods = [
+            'Store',
+            'Update',
+        ];
+
+        foreach ($methods as $type) {
+            if ( ! File::exists("$dir/{$type}Validation.php")) {
+                $name = str_replace('DummyName', $type, $class);
+                File::put("$dir/{$type}Validation.php", $name);
+            }
         }
     }
 }
