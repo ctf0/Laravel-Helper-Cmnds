@@ -55,7 +55,6 @@ ex:make:all    Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 >
 > - Validation [y/N]
 >  - create a new folder `App/Http/Validations` equal to the class name + files for **'Store & Update Validation'** [Read More](https://ctf0.wordpress.com/2016/10/01/custom-validation-with-the-same-workflow-laravel-v5-2/)
->  - for authorization [Read More](https://gist.github.com/ctf0/5cde91273c33ade6da6e2a0c8b7f47bf)
 
 4- ex:re:migrate
 >  - php artisan migrate:refresh --seed
