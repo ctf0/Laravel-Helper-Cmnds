@@ -3,6 +3,7 @@
 namespace App\Http\Validations\DummyClass;
 
 use Validator;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
@@ -10,7 +11,33 @@ class DummyName
 {
     use ValidatesRequests;
 
-    public function validate($request)
+    public function __construct(Request $request)
+    {
+        if ( ! $this->authorize()) {
+            abort(403);
+        }
+
+        $this->validate($request);
+    }
+
+    /**
+     * [authorize description].
+     *
+     * @return [type] [description]
+     */
+    protected function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * [validate description].
+     *
+     * @param [type] $request [description]
+     *
+     * @return [type] [description]
+     */
+    protected function validate($request)
     {
         $rules = [
             // ...
@@ -27,7 +54,7 @@ class DummyName
                 $validator,
                 $this->buildFailedValidationResponse(
                     $request,
-                    $this->formatValidationErrors($validator)
+                    $validator->errors()->getMessages()
                 )
             );
         }
