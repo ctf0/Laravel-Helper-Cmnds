@@ -11,27 +11,27 @@ Route::group(['prefix' => 'DummyName'], function () {
         'uses' => 'DummyClassController@create',
         ]
     );
-    Route::post('create', [
+    Route::post('/', [
         'as'   => 'DummyName.store',
         'uses' => 'DummyClassController@store',
         ]
     );
-    Route::get('show', [
+    Route::get('show/{id}', [
         'as'   => 'DummyName.show',
         'uses' => 'DummyClassController@show',
         ]
     );
-    Route::get('edit', [
+    Route::get('edit/{id}', [
         'as'   => 'DummyName.edit',
         'uses' => 'DummyClassController@edit',
         ]
     );
-    Route::patch('update', [
+    Route::patch('update/{id}', [
         'as'   => 'DummyName.update',
         'uses' => 'DummyClassController@update',
         ]
     );
-    Route::delete('destroy', [
+    Route::delete('destroy/{id}', [
         'as'   => 'DummyName.destroy',
         'uses' => 'DummyClassController@destroy',
         ]

@@ -2,10 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Artisan;
 
 class MakeAll extends Command
 {
@@ -15,6 +13,7 @@ class MakeAll extends Command
      * @var string
      */
     protected $signature = 'ex:make:all';
+
     protected $class;
     protected $name;
 
@@ -41,26 +40,29 @@ class MakeAll extends Command
     public function handle()
     {
         $this->class = title_case($this->ask('What is the Class name ex.abc'));
+        $this->name  = strtolower($this->class);
 
-        Artisan::call('make:controller', [
+        // create controller
+        $this->callSilent('make:controller', [
             'name'       => $this->class.'Controller',
             '--resource' => true,
         ]);
 
-        Artisan::call('make:model', [
+        // create model
+        // create migration
+        $this->callSilent('make:model', [
             'name' => $this->class,
             '-m'   => true,
         ]);
 
+        // create a seeder
         if ($this->confirm('Do you wish to make a Seeder? [y|N]')) {
-            Artisan::call('make:seeder', [
+            $this->callSilent('make:seeder', [
                 'name' => str_plural($this->class).'TableSeerder',
             ]);
 
-            $this->addSeeder();
+            $this->registerSeederFile();
         }
-
-        $this->name = Str::lower($this->class);
 
         // create routes
         if ($this->confirm('Do you wish to add a Route? [y|N]')) {
@@ -73,19 +75,31 @@ class MakeAll extends Command
         }
 
         // create validations
-        if ($this->confirm('Do you wish to include Validation? [y|N]')) {
-            $this->createValidation();
+        $choice = $this->choice('Do you wish to include Validation?', ['FormRequest', 'CustomValidation', 'Non'], 2);
+        switch ($choice) {
+            case 'FormRequest':
+                $answer = $this->ask('Validation Class name ex.xyz');
+                $this->call('make:request', ['name' => $answer.'Request']);
+                break;
+
+            case 'CustomValidation':
+                $answer = $this->ask('Validation Class name ex.xyz');
+                $this->createValidation($answer.'Validation');
+                break;
+
+            default:
+                break;
         }
 
         $this->info('All Done');
     }
 
     /**
-     * [addSeeder description].
+     * [registerSeederFile description].
      *
      * @return [type] [description]
      */
-    protected function addSeeder()
+    protected function registerSeederFile()
     {
         $stub = File::get(__DIR__.'/stubs/db/seeder.stub');
         $seed = str_replace('DummySeed', str_plural($this->class), $stub);
@@ -102,8 +116,6 @@ class MakeAll extends Command
 
             return File::put($dir, $file);
         }
-
-        return;
     }
 
     /**
@@ -113,21 +125,20 @@ class MakeAll extends Command
      */
     protected function createRoute()
     {
-        $dir   = app_path('Http/Routes');
+        $dir = app_path('Http/Routes');
+
         $stub  = File::get(__DIR__.'/stubs/route/create.stub');
         $name  = str_replace('DummyName', $this->name, $stub);
         $class = str_replace('DummyClass', $this->class, $name);
 
-        if ( ! File::exists($dir)) {
-            File::makeDirectory($dir);
-        }
+        $this->checkDirExistence($dir);
 
         if ( ! File::exists("$dir/$this->class.php")) {
             File::put("$dir/$this->class.php", $class);
         }
 
         // add loop to the main routes.php
-        $search             = 'foreach (File::allFiles(__DIR__.\'/Routes\')';
+        $search             = '(File::allFiles(__DIR__.\'/Routes\')';
         $route_file         = app_path('Http/routes.php');
         $route_file_content = File::get(__DIR__.'/stubs/route/web.stub');
 
@@ -145,9 +156,7 @@ class MakeAll extends Command
     {
         $dir = resource_path("views/$this->name");
 
-        if ( ! File::exists($dir)) {
-            File::makeDirectory($dir);
-        }
+        $this->checkDirExistence($dir);
 
         $methods = [
             'create',
@@ -169,26 +178,31 @@ class MakeAll extends Command
      *
      * @return [type] [description]
      */
-    protected function createValidation()
+    protected function createValidation($answer)
     {
         $dir   = app_path("Http/Validations/$this->class");
         $stub  = File::get(__DIR__.'/stubs/validation/create.stub');
         $class = str_replace('DummyClass', $this->class, $stub);
 
-        if ( ! File::exists($dir)) {
-            File::makeDirectory($dir, 0755, true);
+        $this->checkDirExistence($dir);
+
+        if ( ! File::exists("$dir/{$answer}.php")) {
+            $name = str_replace('DummyName', $answer, $class);
+            File::put("$dir/{$answer}.php", $name);
         }
+    }
 
-        $methods = [
-            'Store',
-            'Update',
-        ];
-
-        foreach ($methods as $type) {
-            if ( ! File::exists("$dir/{$type}Validation.php")) {
-                $name = str_replace('DummyName', $type, $class);
-                File::put("$dir/{$type}Validation.php", $name);
-            }
+    /**
+     * [checkDirExistence description].
+     *
+     * @param [type] $dir [description]
+     *
+     * @return [type] [description]
+     */
+    protected function checkDirExistence($dir)
+    {
+        if ( ! File::exists($dir)) {
+            return File::makeDirectory($dir, 0755, true);
         }
     }
 }
