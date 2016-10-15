@@ -64,7 +64,7 @@ ex:fine:tune   optimize & cache config
 # v5.3
 **Installation & Usage** same as v5.2 except **#3- ex:make:all (Rotues [y/N])**
 >  - creates a new folder in `routes/Routes`.
->  - append a loop to `web.php` to include all the files from the `routes/Routes` folder "happens only once"
+>  - append a loop to `web.php` to include all the files from the `routes/Routes` folder
 
 
 ### #ToDo
