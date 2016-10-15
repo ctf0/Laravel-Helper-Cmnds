@@ -56,7 +56,7 @@ ex:re:migrate   migrate:refresh + seed & cache clear
 >
 > - Validation "choose creating either **FormRequest** or **CustomValidation** or **Non**"
 >  - php artisan make:request {name}
->  - create a new folder `App/Http/Validations/ClassName` + a file equal to the validation class name [Read More](https://ctf0.wordpress.com/2016/10/01/custom-validation-with-the-same-workflow-laravel-v5-2/)
+>  - create a new folder `App/Http/Validations/ClassName` + file equal to the validation class name [Read More](https://ctf0.wordpress.com/2016/10/01/custom-validation-with-the-same-workflow-laravel-v5-2/)
 
 4- ex:re:migrate [Also Check](http://code4fun.io/post/how-to-share-data-with-all-views-in-laravel-5-3-the-right-way)
 >  - php artisan migrate:refresh --seed
