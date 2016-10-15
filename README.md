@@ -20,8 +20,8 @@ now you have 3 new cmnds.
 
 ```shell
 ex:clear:all   Clear (Cache/Config/Route-Cache/View/Compiled/Pass-Resets)
-ex:fine:tune   optimize & cache config
 ex:make:all    Make (Controller/Model/Migration/Seeder/Route/View/Validation)
+ex:fine:tune   optimize & cache config
 ```
 > none of the cmnds require any interaction except the `ex:make:all` which will ask you for the class name.
 
