@@ -47,15 +47,15 @@ ex:re:migrate   migrate:refresh + seed & cache clear
 >   - create seeder file & register it into `DatabaseSeeder::run()`.
 >
 > - Rotues [y/N]
->  - creates a new folder `App/Http/Routes/ClassName`.
+>  - creates a new folder `App/Http/Routes/ClassName.php`.
 >  - append a loop to `App/Http/routes.php` to include all the files from the `App/Http/Routes` folder.
 >
 > - Views [y/N]
->  - create a new folder in `Resources/Views/ClassName` + files for **'create/show/edit'**.
+>  - create a new folder in `Resources/Views/ClassName/` + files for **'create/show/edit'**.
 >
 > - Validation "**FormRequest** or **CustomValidation** or **Non**"
->  - create `Request.php` if not found, create a new folder `App/Http/Requests/ClassName`, php artisan make:request {name} [Read More](https://ctf0.wordpress.com/2016/10/17/extend-formrequest-to-allow-more-functionality-in-laravel-v5-2/)
->  - create a new folder `App/Http/Validations/ClassName` + the validation class name [Read More](https://ctf0.wordpress.com/2016/10/01/custom-validation-with-the-same-workflow-laravel-v5-2/).
+>  - create `App/Http/Requests/Request.php` if not found, create a new folder `App/Http/Requests/ClassName/`, php artisan make:request {name} [Read More](https://ctf0.wordpress.com/2016/10/17/extend-formrequest-to-allow-more-functionality-in-laravel-v5-2/)
+>  - create a new folder `App/Http/Validations/ClassName/` + the validation class name [Read More](https://ctf0.wordpress.com/2016/10/01/custom-validation-with-the-same-workflow-laravel-v5-2/).
 >  - dont include any validation "default".
 
 4- ex:re:migrate [Also Check](http://code4fun.io/post/how-to-share-data-with-all-views-in-laravel-5-3-the-right-way)
@@ -67,11 +67,11 @@ ex:re:migrate   migrate:refresh + seed & cache clear
 
 3- ex:make:all
 > - Rotues [y/N]
->  - creates a new folder in `routes/Routes/ClassName`.
+>  - creates a new folder in `routes/Routes/ClassName.php`.
 >  - append a loop to `web.php` to include all the files from the `routes/Routes` folder.
 >
 > - Validation
->  - create a new folder `App/Http/Requests/ClassName` + php artisan make:request {name} [Read More](https://ctf0.wordpress.com/2016/10/16/extend-formrequest-to-allow-more-functionality-in-laravel-v5-3/).
+>  - create a new folder `App/Http/Requests/ClassName/` + php artisan make:request {name} [Read More](https://ctf0.wordpress.com/2016/10/16/extend-formrequest-to-allow-more-functionality-in-laravel-v5-3/).
 
 
 # ToDo
