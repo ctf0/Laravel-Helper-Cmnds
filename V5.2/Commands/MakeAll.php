@@ -75,7 +75,7 @@ class MakeAll extends Command
         }
 
         // create validations
-        $choice = $this->choice('Do you wish to include Validation?', ['FormRequest', 'CustomValidation', 'Non'], 2);
+        $choice = $this->choice('Do you wish to include Validation?', ['>>> Choose 1, 2 or 3 <\<\<','FormRequest', 'CustomValidation', 'Non'], 3);
         switch ($choice) {
             case 'FormRequest':
                 $answer = $this->ask('Validation Class name ex.xyz');
