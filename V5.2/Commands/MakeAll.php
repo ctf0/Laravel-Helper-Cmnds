@@ -79,7 +79,7 @@ class MakeAll extends Command
         switch ($choice) {
             case 'FormRequest':
                 $answer = $this->ask('Validation Class name ex.xyz');
-                $this->call('make:request', ['name' => "{$this->class}/{$answer}Request"]);
+                $this->createRequest($answer.'Request');
                 break;
 
             case 'CustomValidation':
@@ -170,6 +170,31 @@ class MakeAll extends Command
             if ( ! File::exists("$dir/$one.blade.php")) {
                 File::put("$dir/$one.blade.php", $stub);
             }
+        }
+    }
+
+    /**
+     * [createRequest description].
+     *
+     * @param [type] $answer [description]
+     *
+     * @return [type] [description]
+     */
+    protected function createRequest($answer)
+    {
+        $dir   = app_path("Http/Requests/$this->class");
+        $stub  = File::get(__DIR__.'/stubs/request/create.stub');
+        $class = str_replace('DummyClass', $this->class, $stub);
+
+        $this->checkDirExistence($dir);
+
+        if ( ! File::exists("Http/Requests/Request.php")) {
+            File::copy(__DIR__.'/stubs/request/Request.php', app_path("Http/Requests/Request.php"));
+        }
+
+        if ( ! File::exists("$dir/{$answer}.php")) {
+            $name = str_replace('DummyName', $answer, $class);
+            File::put("$dir/{$answer}.php", $name);
         }
     }
 

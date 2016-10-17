@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
-use Illuminate\Support\Facades\Artisan;
 
 class FineTune extends Command
 {
@@ -41,8 +40,8 @@ class FineTune extends Command
         $comp->setWorkingDirectory(base_path());
         $comp->run();
 
-        Artisan::call('optimize');
-        Artisan::call('config:cache');
+        $this->callSilent('optimize');
+        $this->callSilent('config:cache');
 
         $this->info('All Done');
     }

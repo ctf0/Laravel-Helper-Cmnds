@@ -22,8 +22,6 @@ class ReMigrate extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -37,8 +35,8 @@ class ReMigrate extends Command
      */
     public function handle()
     {
-        Artisan::call('cache:clear');
-        Artisan::call('migrate:refresh', [
+        $this->callSilent('cache:clear');
+        $this->callSilent('migrate:refresh', [
             '--seed' => true,
         ]);
     }

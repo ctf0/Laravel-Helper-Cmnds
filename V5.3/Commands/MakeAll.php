@@ -174,14 +174,16 @@ class MakeAll extends Command
     }
 
     /**
-     * [createValidation description].
+     * [createRequest description].
+     *
+     * @param [type] $answer [description]
      *
      * @return [type] [description]
      */
-    protected function createValidation($answer)
+    protected function createRequest($answer)
     {
-        $dir   = app_path("Http/Validations/$this->class");
-        $stub  = File::get(__DIR__.'/stubs/validation/create.stub');
+        $dir   = app_path("Http/Requests/$this->class");
+        $stub  = File::get(__DIR__.'/stubs/request/create.stub');
         $class = str_replace('DummyClass', $this->class, $stub);
 
         $this->checkDirExistence($dir);
@@ -193,16 +195,14 @@ class MakeAll extends Command
     }
 
     /**
-     * [createRequest description].
-     *
-     * @param [type] $answer [description]
+     * [createValidation description].
      *
      * @return [type] [description]
      */
-    protected function createRequest($answer)
+    protected function createValidation($answer)
     {
-        $dir   = app_path("Http/Requests/$this->class");
-        $stub  = File::get(__DIR__.'/stubs/request/create.stub');
+        $dir   = app_path("Http/Validations/$this->class");
+        $stub  = File::get(__DIR__.'/stubs/validation/create.stub');
         $class = str_replace('DummyClass', $this->class, $stub);
 
         $this->checkDirExistence($dir);

@@ -3,11 +3,10 @@
 namespace App\Http\Request\DummyClass;
 
 use Validator;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Http\Exception\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
-class DummyName extends FormRequest
+class DummyName extends Request
 {
     protected $error_container = [];
 
@@ -58,8 +57,7 @@ class DummyName extends FormRequest
      */
     protected function failedValidation(ValidatorContract $contract)
     {
-        throw new ValidationException(
-            $contract,
+        throw new HttpResponseException(
             $this->response(
                 array_replace_recursive(
                     $this->formatErrors($contract),
@@ -84,7 +82,7 @@ class DummyName extends FormRequest
 
             $input_name = 'something';
 
-            // ex. https://ctf0.wordpress.com/2016/10/01/multifile-upload-validation-in-laravel-v5-3/
+            // ex. https://ctf0.wordpress.com/2016/10/17/multifile-upload-validation-in-laravel-v5-2-pt-2/
 
         });
     }

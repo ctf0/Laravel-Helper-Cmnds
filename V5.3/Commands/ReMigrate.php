@@ -35,8 +35,8 @@ class ReMigrate extends Command
      */
     public function handle()
     {
-        Artisan::call('cache:clear');
-        Artisan::call('migrate:refresh', [
+        $this->callSilent('cache:clear');
+        $this->callSilent('migrate:refresh', [
             '--seed' => true,
         ]);
     }
