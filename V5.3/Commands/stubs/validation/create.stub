@@ -54,7 +54,7 @@ class DummyName
                 $validator,
                 $this->buildFailedValidationResponse(
                     $request,
-                    $validator->errors()->getMessages()
+                    $this->formatValidationErrors($validator)
                 )
             );
         }

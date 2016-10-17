@@ -24,8 +24,6 @@ class FineTune extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -39,11 +37,12 @@ class FineTune extends Command
      */
     public function handle()
     {
-        Artisan::call('optimize');
-        Artisan::call('config:cache');
-        $comp = new Process("composer dump-autoload");
+        $comp = new Process('composer dump-autoload');
         $comp->setWorkingDirectory(base_path());
         $comp->run();
+
+        Artisan::call('optimize');
+        Artisan::call('config:cache');
 
         $this->info('All Done');
     }

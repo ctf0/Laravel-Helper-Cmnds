@@ -79,7 +79,7 @@ class MakeAll extends Command
         switch ($choice) {
             case 'FormRequest':
                 $answer = $this->ask('Validation Class name ex.xyz');
-                $this->call('make:request', ['name' => $answer.'Request']);
+                $this->call('make:request', ['name' => "{$this->class}/{$answer}Request"]);
                 break;
 
             case 'CustomValidation':
