@@ -19,10 +19,10 @@ protected $commands = [
 now you have 4 new cmnds.
 
 ```bash
-ex:clear:all    Clear (Cache/Config/Route-Cache/View/Compiled/Pass-Resets)
-ex:fine:tune    optimize & cache config
-ex:make:all     Make (Controller/Model/Migration/Seeder/Route/View/Validation)
-ex:re:migrate   migrate:refresh + seed & cache clear
+ex:clear:all    # Clear (Cache/Config/Route-Cache/View/Compiled/Pass-Resets)
+ex:fine:tune    # optimize & cache config
+ex:make:all     # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
+ex:re:migrate   # migrate:refresh + seed & cache clear
 ```
 > none of the cmnds require any interaction except the `ex:make:all` which will ask you for the class name.
 
