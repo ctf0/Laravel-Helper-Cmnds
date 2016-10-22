@@ -56,7 +56,7 @@ class MakeAll extends Command
         ]);
 
         // create a seeder
-        if ($this->confirm('Do you wish to make a Seeder? [y|N]')) {
+        if ($this->confirm('Do you wish to make a Seeder ?')) {
             $this->callSilent('make:seeder', [
                 'name' => str_plural($this->class).'TableSeerder',
             ]);
@@ -65,17 +65,17 @@ class MakeAll extends Command
         }
 
         // create routes
-        if ($this->confirm('Do you wish to add a Route? [y|N]')) {
+        if ($this->confirm('Do you wish to add a Route ?')) {
             $this->createRoute();
         }
 
         // create views
-        if ($this->confirm('Do you wish to include Views? [y|N]')) {
+        if ($this->confirm('Do you wish to include Views ?')) {
             $this->createView();
         }
 
         // create validations
-        $choice = $this->choice('Do you wish to include Validation?', ['>>> Choose 1, 2 or 3 <\<\<','FormRequest', 'CustomValidation', 'Non'], 3);
+        $choice = $this->choice('Do you wish to include Validation ?', ['>>> Choose 1, 2 or 3 <\<\<','FormRequest', 'CustomValidation', 'Non'], 3);
         switch ($choice) {
             case 'FormRequest':
                 $answer = $this->ask('Validation Class name ex.xyz');
