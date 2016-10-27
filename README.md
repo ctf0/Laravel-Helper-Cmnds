@@ -54,7 +54,7 @@ ex:re:migrate   # migrate:refresh + seed & cache clear
 >  - create a new folder in `Resources/Views/ClassName/` + files for **'create/show/edit'**.
 >
 > - Validation "**FormRequest** or **CustomValidation** or **Non**"
->  - create `App/Http/Requests/Request.php` if not found, create a new folder `App/Http/Requests/ClassName/`, `php artisan make:request {name}` [Read More](https://ctf0.wordpress.com/2016/10/17/extend-formrequest-to-allow-more-functionality-in-laravel-v5-2/)
+>  - create `App/Http/Requests/Request.php` if not found, create a new folder `App/Http/Requests/ClassName/` + `php artisan make:request {name}` [Read More](https://ctf0.wordpress.com/2016/10/17/extend-formrequest-to-allow-more-functionality-in-laravel-v5-2/)
 >  - create a new folder `App/Http/Validations/ClassName/` + the validation class name [Read More](https://ctf0.wordpress.com/2016/10/01/custom-validation-with-the-same-workflow-laravel-v5-2/).
 >  - dont include any validation "default".
 
