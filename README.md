@@ -60,8 +60,3 @@ ex:re:migrate   # migrate:refresh + seed & cache clear
 4- ex:re:migrate [Also Check](http://code4fun.io/post/how-to-share-data-with-all-views-in-laravel-5-3-the-right-way)
 >  - php artisan migrate:refresh --seed
 >  - php artisan cache:clear
-
-# ToDo
-
-* [ ] Make `Models Folder` and add **BaseModel** while make others extend it.
-* [ ] Turn into Package.
