@@ -1,4 +1,3 @@
-# v5.2
 ### #Installation
 1- copy the `Commands` folder to `App/Console`
 
@@ -61,18 +60,6 @@ ex:re:migrate   # migrate:refresh + seed & cache clear
 4- ex:re:migrate [Also Check](http://code4fun.io/post/how-to-share-data-with-all-views-in-laravel-5-3-the-right-way)
 >  - php artisan migrate:refresh --seed
 >  - php artisan cache:clear
-
-# v5.3
-**#Installation & #Usage** same as v5.2
-
-3- ex:make:all
-> - Rotues [y/N]
->  - creates a new folder in `routes/Routes/ClassName.php`.
->  - append a loop to `web.php` to include all the files from the `routes/Routes` folder.
->
-> - Validation
->  - create a new folder `App/Http/Requests/ClassName/` + `php artisan make:request {name}` [Read More](https://ctf0.wordpress.com/2016/10/16/extend-formrequest-to-allow-more-functionality-in-laravel-v5-3/).
-
 
 # ToDo
 

@@ -1,4 +1,0 @@
-
-foreach (File::allFiles(__DIR__.'/Routes') as $route_file) {
-    require_once $route_file->getPathname();
-}
