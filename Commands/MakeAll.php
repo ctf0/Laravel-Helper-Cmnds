@@ -50,10 +50,7 @@ class MakeAll extends Command
 
         // create model
         // create migration
-        $this->callSilent('make:model', [
-            'name' => $this->class,
-            '-m'   => true,
-        ]);
+        $this->createModel();
 
         // create a seeder
         if ($this->confirm('Do you wish to make a Seeder ?')) {
@@ -75,23 +72,44 @@ class MakeAll extends Command
         }
 
         // create validations
-        $choice = $this->choice('Do you wish to include Validation ?', ['>>> Choose 1, 2 or 3 <\<\<','FormRequest', 'CustomValidation', 'Non'], 3);
-        switch ($choice) {
-            case 'FormRequest':
-                $answer = $this->ask('Validation Class name ex.xyz');
-                $this->createRequest($answer.'Request');
-                break;
+        $choice = $this->choice('Do you wish to include Validation ?', ['>>> Choose 1, 2 <\<\<', 'FormRequest', 'Non'], 2);
 
-            case 'CustomValidation':
-                $answer = $this->ask('Validation Class name ex.xyz');
-                $this->createValidation($answer.'Validation');
-                break;
-
-            default:
-                break;
+        if ($choice == 'FormRequest') {
+            $answer = $this->ask('Validation Class name ex.xyz');
+            $this->createRequest($answer.'Request');
         }
 
         $this->info('All Done');
+    }
+
+    /**
+     * [createModel description].
+     *
+     * @return [type] [description]
+     */
+    protected function createModel()
+    {
+        $dir = app_path('Http/Models');
+        $this->checkDirExistence($dir);
+
+        if ( ! File::exists("$dir/BaseModel.php")) {
+            File::copy(__DIR__.'/stubs/model/BaseModel.php', "$dir/BaseModel.php");
+        }
+
+        // create model
+        $stub  = File::get(__DIR__.'/stubs/model/create.stub');
+        $class = str_replace('DummyClass', $this->class, $stub);
+
+        if ( ! File::exists("$dir/$this->class.php")) {
+            File::put("$dir/$this->class.php", $class);
+        }
+
+        // create migration
+        $table = str_plural(snake_case(class_basename($this->class)));
+        $this->callSilent('make:migration', [
+            'name'     => "create_{$table}_table",
+            '--create' => $table,
+        ]);
     }
 
     /**
@@ -126,12 +144,11 @@ class MakeAll extends Command
     protected function createRoute()
     {
         $dir = app_path('Http/Routes');
+        $this->checkDirExistence($dir);
 
         $stub  = File::get(__DIR__.'/stubs/route/create.stub');
         $name  = str_replace('DummyName', $this->name, $stub);
         $class = str_replace('DummyClass', $this->class, $name);
-
-        $this->checkDirExistence($dir);
 
         if ( ! File::exists("$dir/$this->class.php")) {
             File::put("$dir/$this->class.php", $class);
@@ -155,7 +172,6 @@ class MakeAll extends Command
     protected function createView()
     {
         $dir = resource_path("views/$this->name");
-
         $this->checkDirExistence($dir);
 
         $methods = [
@@ -182,34 +198,15 @@ class MakeAll extends Command
      */
     protected function createRequest($answer)
     {
-        $dir   = app_path("Http/Requests/$this->class");
+        $dir = app_path("Http/Requests/$this->class");
+        $this->checkDirExistence($dir);
+
         $stub  = File::get(__DIR__.'/stubs/request/create.stub');
         $class = str_replace('DummyClass', $this->class, $stub);
 
-        $this->checkDirExistence($dir);
-
-        if ( ! File::exists("Http/Requests/Request.php")) {
-            File::copy(__DIR__.'/stubs/request/Request.php', app_path("Http/Requests/Request.php"));
+        if ( ! File::exists('Http/Requests/Request.php')) {
+            File::copy(__DIR__.'/stubs/request/Request.php', app_path('Http/Requests/Request.php'));
         }
-
-        if ( ! File::exists("$dir/{$answer}.php")) {
-            $name = str_replace('DummyName', $answer, $class);
-            File::put("$dir/{$answer}.php", $name);
-        }
-    }
-
-    /**
-     * [createValidation description].
-     *
-     * @return [type] [description]
-     */
-    protected function createValidation($answer)
-    {
-        $dir   = app_path("Http/Validations/$this->class");
-        $stub  = File::get(__DIR__.'/stubs/validation/create.stub');
-        $class = str_replace('DummyClass', $this->class, $stub);
-
-        $this->checkDirExistence($dir);
 
         if ( ! File::exists("$dir/{$answer}.php")) {
             $name = str_replace('DummyName', $answer, $class);

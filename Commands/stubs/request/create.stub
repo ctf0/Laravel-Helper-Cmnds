@@ -2,7 +2,7 @@
 
 namespace App\Http\Request\DummyClass;
 
-use Validator;
+use App\Http\Requests\Request;
 use Illuminate\Http\Exception\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
@@ -82,7 +82,7 @@ class DummyName extends Request
 
             $input_name = 'something';
 
-            // ex. https://ctf0.wordpress.com/2016/10/17/multifile-upload-validation-in-laravel-v5-2-pt-2/
+            // https://ctf0.wordpress.com/2016/10/17/extend-formrequest-to-allow-more-functionality-in-laravel-v5-2/
 
         });
     }

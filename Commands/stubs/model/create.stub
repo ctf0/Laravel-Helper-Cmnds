@@ -1,0 +1,8 @@
+<?php
+
+namespace App\Http\Models;
+
+class DummyClass extends BaseModel
+{
+    //
+}
