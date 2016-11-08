@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Request\DummyClass;
+namespace App\Http\Requests\DummyClass;
 
 use App\Http\Requests\Request;
 use Illuminate\Http\Exception\HttpResponseException;
@@ -74,11 +74,11 @@ class DummyName extends Request
      *
      * @return [type] [description]
      */
-    protected function validateExtra($instance)
+    protected function validateExtra($validator)
     {
         $request = $this->instance();
 
-        $instance->after(function ($instance) use ($request) {
+        $validator->after(function ($validator) use ($request) {
 
             $input_name = 'something';
 
