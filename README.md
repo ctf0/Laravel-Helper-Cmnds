@@ -5,5 +5,4 @@ A Helper Console Cmnds For Laravel To Speedup The Usual Workflow
 
 # ToDo
 
-* [ ] Make `Models Folder` and add **BaseModel** while make others extend it.
 * [ ] Turn into Package.
