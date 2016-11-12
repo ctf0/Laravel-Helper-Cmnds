@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Requests\DummyClass;
+namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
 use Illuminate\Http\Exception\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
-class DummyName extends Request
+class DummyClass extends Request
 {
     protected $error_container = [];
 

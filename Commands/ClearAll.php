@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use File;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Schema;
+use Schema;
+use Session;
 
 class ClearAll extends Command
 {
@@ -41,6 +43,8 @@ class ClearAll extends Command
         $this->callSilent('config:clear');
         $this->callSilent('route:clear');
         $this->callSilent('view:clear');
+        Session::flush();
+        File::put(storage_path('logs/laravel.log'), '');
 
         if (Schema::hasTable('password_resets')) {
             $this->callSilent('auth:clear-resets');
