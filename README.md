@@ -63,6 +63,6 @@ ex:re:migrate   # migrate:refresh + seed & cache clear
     - `php artisan make:request {name}` [Read More](https://ctf0.wordpress.com/2016/10/17/extend-formrequest-to-allow-more-functionality-in-laravel-v5-2/)
 >  - dont include any validation.
 
-4- ex:re:migrate [Also Check](http://code4fun.io/post/how-to-share-data-with-all-views-in-laravel-5-3-the-right-way)
+4- ex:re:migrate
 >  - php artisan migrate:refresh --seed
 >  - php artisan cache:clear
