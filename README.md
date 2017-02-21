@@ -50,12 +50,12 @@ ex:re:migrate   # migrate:refresh + seed & cache clear
     - if "Route Model Binding" we will add the **Model** class to the controller automatically
     - php artisan make:controller --resource
 >
->  - Model & Migration
+> - Model & Migration
     - create `App/Http/Models/BaseModel.php` if not found
     - create `App/Http/Models/ClassName.php`
     - `php artisan make:migration {name} --create`
 >
->  - Seeder [y/N]
+> - Seeder [y/N]
     - php artisan make:seeder
     - create seeder file & register it under `DatabaseSeeder::run()`.
 >
