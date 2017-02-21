@@ -54,10 +54,14 @@ class MakeAll extends Command
         if ($this->confirm('Do you wish to include "Route Model Binding" ?')) {
             $this->createRMB();
         } else {
-            $this->callSilent('make:controller', [
-                'name'       => $this->class.'Controller',
-                '--resource' => true,
-            ]);
+            if (!$this->validation) {
+                $this->callSilent('make:controller', [
+                    'name'       => $this->class.'Controller',
+                    '--resource' => true,
+                ]);
+            }
+
+            $this->createController();
         }
 
         // create model
@@ -134,14 +138,36 @@ class MakeAll extends Command
         $controller = $this->class.'Controller';
         if (!File::exists("$dir/$controller.php")) {
             $stub = $this->validation
-            ? File::get(__DIR__.'/stubs/controller/request.stub')
-            : File::get(__DIR__.'/stubs/controller/create.stub');
+            ? File::get(__DIR__.'/stubs/controller/rmb_request.stub')
+            : File::get(__DIR__.'/stubs/controller/rmb.stub');
 
             $class    = str_replace('DummyClass', $controller, $stub);
             $model    = str_replace('DummyModelClass', $this->class, $class);
             $modelVar = str_replace('DummyModelVariable', $this->name, $model);
 
             $final = $modelVar;
+
+            File::put("$dir/$controller.php", $final);
+        }
+    }
+
+    /**
+     * [createController description].
+     *
+     * @return [type] [description]
+     */
+    protected function createController()
+    {
+        $dir = app_path('Http/Controllers');
+        $this->checkDirExistence($dir);
+
+        $controller = $this->class.'Controller';
+        if (!File::exists("$dir/$controller.php")) {
+            $stub  = File::get(__DIR__.'/stubs/controller/plain_request.stub');
+            $class = str_replace('DummyClass', $controller, $stub);
+            $model = str_replace('DummyModelClass', $this->class, $class);
+
+            $final = $model;
 
             File::put("$dir/$controller.php", $final);
         }
