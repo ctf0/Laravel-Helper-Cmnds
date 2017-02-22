@@ -18,14 +18,14 @@ protected $commands = [
 now you have 4 new cmnds.
 
 ```bash
-ex:clear:all    # Clear (Cache/Config/Route-Cache/View/Session/Compiled/Laravel-LogFile/Pass-Resets)
-ex:fine:tune    # optimize & cache config
-ex:make:all     # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
-ex:re:migrate   # migrate:refresh + seed & cache clear
+ex:clear        # Clear (Cache/Config/Route-Cache/View/Session/Compiled/Laravel-LogFile/Pass-Resets)
+ex:finetune     # optimize & cache config
+ex:make         # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
+ex:remigrate    # migrate:refresh + seed & ex:clear
 ```
 > none of the cmnds require any interaction except the `ex:make:all` which will ask you for the class name.
 
-1- ex:clear:all
+1- ex:clear
 >  - php artisan clear-compiled
 >  - php artisan cache:clear
 >  - php artisan config:clear
@@ -35,12 +35,12 @@ ex:re:migrate   # migrate:refresh + seed & cache clear
 >  - File::put(storage_path('logs/laravel.log'), '');
 >  - php artisan auth:clear-resets `if the table was migrated`
 
-2- ex:fine:tune
+2- ex:finetune
 >  - php artisan optimize
 >  - php artisan config:cache
 >  - composer dump-autoload
 
-3- ex:make:all
+3- ex:make
 > - Validation [y/N] [Read More](https://ctf0.wordpress.com/2016/10/17/extend-formrequest-to-allow-more-functionality-in-laravel-v5-2/)
     - create `App/Http/Requests/Request.php` if not found
     - create 2 classes for **Update & Store** `php artisan make:request {name}`
@@ -68,6 +68,6 @@ ex:re:migrate   # migrate:refresh + seed & cache clear
 >
 > - composer dump-autoload
 
-4- ex:re:migrate
->  - php artisan cache:clear
+4- ex:remigrate
+>  - php artisan ex:clear
 >  - php artisan migrate:refresh --seed

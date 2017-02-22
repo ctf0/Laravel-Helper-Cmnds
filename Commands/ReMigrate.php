@@ -11,7 +11,7 @@ class ReMigrate extends Command
      *
      * @var string
      */
-    protected $signature = 'ex:re:migrate';
+    protected $signature = 'ex:remigrate';
 
     /**
      * The console command description.
@@ -35,7 +35,7 @@ class ReMigrate extends Command
      */
     public function handle()
     {
-        $this->callSilent('cache:clear');
+        $this->callSilent('ex:clear');
         $this->callSilent('migrate:refresh', [
             '--seed' => true,
         ]);

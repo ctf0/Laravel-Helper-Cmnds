@@ -12,7 +12,7 @@ class FineTune extends Command
      *
      * @var string
      */
-    protected $signature = 'ex:fine:tune';
+    protected $signature = 'ex:finetune';
 
     /**
      * The console command description.

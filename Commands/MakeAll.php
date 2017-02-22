@@ -13,7 +13,7 @@ class MakeAll extends Command
      *
      * @var string
      */
-    protected $signature = 'ex:make:all';
+    protected $signature = 'ex:make';
 
     protected $class;
     protected $name;
