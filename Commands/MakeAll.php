@@ -54,14 +54,14 @@ class MakeAll extends Command
         if ($this->confirm('Do you wish to include "Route Model Binding" ?')) {
             $this->createRMB();
         } else {
-            if (!$this->validation) {
+            if ($this->validation) {
+                $this->createController();
+            } else {
                 $this->callSilent('make:controller', [
                     'name'       => $this->class.'Controller',
                     '--resource' => true,
                 ]);
             }
-
-            $this->createController();
         }
 
         // create model
