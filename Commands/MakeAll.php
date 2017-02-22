@@ -71,7 +71,7 @@ class MakeAll extends Command
         // create a seeder
         if ($this->confirm('Do you wish to create & register a DB Seeder ?')) {
             $this->callSilent('make:seeder', [
-                'name' => str_plural($this->class).'TableSeerder',
+                'name' => str_plural($this->class).'TableSeeder',
             ]);
 
             $this->registerSeederFile();
