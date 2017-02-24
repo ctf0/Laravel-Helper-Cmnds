@@ -64,7 +64,7 @@ ex:remigrate    # migrate:refresh + seed & ex:clear
     - append a loop to `App/Http/routes.php` to include all the files from the `App/Http/Routes` folder.
 >
 > - Views [y/N]
-    - create a new folder in `Resources/Views/ClassName/` + files for **'index/create/show/edit'**.
+    - create a new folder in `resources/views/pages/ClassName/` + files for **'index/create/show/edit'**.
 >
 > - composer dump-autoload
 

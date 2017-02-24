@@ -141,10 +141,11 @@ class MakeAll extends Command
             ? File::get(__DIR__.'/stubs/controller/rmb_request.stub')
             : File::get(__DIR__.'/stubs/controller/rmb.stub');
 
-            $class    = str_replace('DummyClass', $controller, $stub);
-            $model    = str_replace('DummyModelClass', $this->class, $class);
+            $class = str_replace('DummyClass', $controller, $stub);
+            $model = str_replace('DummyModelClass', $this->class, $class);
+            $view  = str_replace('DummyView', $this->name, $model);
 
-            File::put("$dir/$controller.php", $model);
+            File::put("$dir/$controller.php", $view);
         }
     }
 
@@ -163,8 +164,9 @@ class MakeAll extends Command
             $stub  = File::get(__DIR__.'/stubs/controller/plain_request.stub');
             $class = str_replace('DummyClass', $controller, $stub);
             $model = str_replace('DummyModelClass', $this->class, $class);
+            $view  = str_replace('DummyView', $this->name, $model);
 
-            $final = $model;
+            $final = $view;
 
             File::put("$dir/$controller.php", $final);
         }
@@ -259,12 +261,12 @@ class MakeAll extends Command
      */
     protected function createView()
     {
-        $dir = resource_path("views/$this->name");
+        $dir = resource_path("views/pages/$this->name");
         $this->checkDirExistence($dir);
 
         $methods = [
-            'create',
             'index',
+            'create',
             'show',
             'edit',
         ];

@@ -15,7 +15,7 @@ class DummyClass extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.DummyView.index');
     }
 
     /**
@@ -25,7 +25,7 @@ class DummyClass extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.DummyView.create');
     }
 
     /**
@@ -47,7 +47,7 @@ class DummyClass extends Controller
      */
     public function show(DummyModelClass $id)
     {
-        //
+        return view('pages.DummyView.show');
     }
 
     /**
@@ -58,7 +58,7 @@ class DummyClass extends Controller
      */
     public function edit(DummyModelClass $id)
     {
-        //
+        return view('pages.DummyView.edit');
     }
 
     /**
