@@ -41,7 +41,7 @@ class MakeAll extends Command
      */
     public function handle()
     {
-        $this->class = title_case($this->ask('What is the Class name ex.abc'));
+        $this->class = studly_case($this->ask('What is the Class name ex.abc'));
         $this->name  = strtolower($this->class);
 
         // create validations

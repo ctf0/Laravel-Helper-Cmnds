@@ -40,7 +40,7 @@ ex:remigrate    # migrate:refresh + seed & ex:clear
 >  - php artisan config:cache
 >  - composer dump-autoload
 
-3- ex:make
+3- ex:make (for two words className ex.`SubPage`, write it as `sub_page`)
 > - Validation [y/N] [Read More](https://ctf0.wordpress.com/2016/10/17/extend-formrequest-to-allow-more-functionality-in-laravel-v5-2/)
     - create `App/Http/Requests/Request.php` if not found
     - create 2 classes for **Update & Store** `php artisan make:request {name}`
