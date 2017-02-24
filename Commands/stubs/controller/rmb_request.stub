@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Models\DummyModelClass;
 use App\Http\Requests\DummyModelClassStoreRequest;
 use App\Http\Requests\DummyModelClassUpdateRequest;
-use DummyRootNamespaceHttp\Controllers\Controller;
 
 class DummyClass extends Controller
 {
