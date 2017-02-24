@@ -143,11 +143,8 @@ class MakeAll extends Command
 
             $class    = str_replace('DummyClass', $controller, $stub);
             $model    = str_replace('DummyModelClass', $this->class, $class);
-            $modelVar = str_replace('DummyModelVariable', $this->name, $model);
 
-            $final = $modelVar;
-
-            File::put("$dir/$controller.php", $final);
+            File::put("$dir/$controller.php", $model);
         }
     }
 

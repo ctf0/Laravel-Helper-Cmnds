@@ -41,10 +41,10 @@ class DummyClass extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  App\Http\Models\DummyModelClass  $DummyModelVariable
+     * @param  App\Http\Models\DummyModelClass  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(DummyModelClass $DummyModelVariable)
+    public function show(DummyModelClass $id)
     {
         //
     }
@@ -52,10 +52,10 @@ class DummyClass extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  App\Http\Models\DummyModelClass  $DummyModelVariable
+     * @param  App\Http\Models\DummyModelClass  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(DummyModelClass $DummyModelVariable)
+    public function edit(DummyModelClass $id)
     {
         //
     }
@@ -64,10 +64,10 @@ class DummyClass extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  App\Http\Models\DummyModelClass  $DummyModelVariable
+     * @param  App\Http\Models\DummyModelClass  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DummyModelClass $DummyModelVariable)
+    public function update(Request $request, DummyModelClass $id)
     {
         //
     }
@@ -75,10 +75,10 @@ class DummyClass extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  App\Http\Models\DummyModelClass  $DummyModelVariable
+     * @param  App\Http\Models\DummyModelClass  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DummyModelClass $DummyModelVariable)
+    public function destroy(DummyModelClass $id)
     {
         //
     }
