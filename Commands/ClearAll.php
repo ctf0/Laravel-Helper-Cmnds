@@ -6,6 +6,7 @@ use File;
 use Illuminate\Console\Command;
 use Schema;
 use Session;
+use Symfony\Component\Process\Process;
 
 class ClearAll extends Command
 {
@@ -50,6 +51,20 @@ class ClearAll extends Command
             $this->callSilent('auth:clear-resets');
         }
 
+        $this->compDump();
+
         $this->info('All Done');
+    }
+
+    /**
+     * composer dump-autoload.
+     *
+     * @return [type] [description]
+     */
+    protected function compDump()
+    {
+        $comp = new Process('composer dump-autoload');
+        $comp->setWorkingDirectory(base_path());
+        $comp->run();
     }
 }

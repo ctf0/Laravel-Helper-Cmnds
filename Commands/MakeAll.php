@@ -42,7 +42,7 @@ class MakeAll extends Command
     public function handle()
     {
         $this->class = studly_case($this->ask('What is the Class name ex.abc'));
-        $this->name  = strtolower($this->class);
+        $this->name = strtolower($this->class);
 
         // create validations
         if ($this->confirm('Do you wish to include Validation ?')) {
@@ -117,7 +117,7 @@ class MakeAll extends Command
         foreach ($methods as $one) {
             $fileName = $this->class.$one.'Request';
             if (!File::exists("$dir/$fileName.php")) {
-                $stub  = File::get(__DIR__.'/stubs/request/create.stub');
+                $stub = File::get(__DIR__.'/stubs/request/create.stub');
                 $class = str_replace('DummyClass', $fileName, $stub);
 
                 File::put("$dir/$fileName.php", $class);
@@ -143,7 +143,7 @@ class MakeAll extends Command
 
             $class = str_replace('DummyClass', $controller, $stub);
             $model = str_replace('DummyModelClass', $this->class, $class);
-            $view  = str_replace('DummyView', $this->name, $model);
+            $view = str_replace('DummyView', $this->name, $model);
 
             File::put("$dir/$controller.php", $view);
         }
@@ -161,10 +161,10 @@ class MakeAll extends Command
 
         $controller = $this->class.'Controller';
         if (!File::exists("$dir/$controller.php")) {
-            $stub  = File::get(__DIR__.'/stubs/controller/plain_request.stub');
+            $stub = File::get(__DIR__.'/stubs/controller/plain_request.stub');
             $class = str_replace('DummyClass', $controller, $stub);
             $model = str_replace('DummyModelClass', $this->class, $class);
-            $view  = str_replace('DummyView', $this->name, $model);
+            $view = str_replace('DummyView', $this->name, $model);
 
             $final = $view;
 
@@ -188,7 +188,7 @@ class MakeAll extends Command
 
         // create model
         if (!File::exists("$dir/$this->class.php")) {
-            $stub  = File::get(__DIR__.'/stubs/model/create.stub');
+            $stub = File::get(__DIR__.'/stubs/model/create.stub');
             $class = str_replace('DummyClass', $this->class, $stub);
 
             File::put("$dir/$this->class.php", $class);
@@ -211,7 +211,7 @@ class MakeAll extends Command
     {
         $stub = File::get(__DIR__.'/stubs/db/seeder.stub');
         $seed = str_replace('DummySeed', str_plural($this->class), $stub);
-        $dir  = database_path('seeds/DatabaseSeeder.php');
+        $dir = database_path('seeds/DatabaseSeeder.php');
 
         if (!str_contains(File::get($dir), str_plural($this->class))) {
             $file = file($dir);
@@ -237,16 +237,16 @@ class MakeAll extends Command
         $this->checkDirExistence($dir);
 
         if (!File::exists("$dir/$this->class.php")) {
-            $stub  = File::get(__DIR__.'/stubs/route/create.stub');
-            $name  = str_replace('DummyName', $this->name, $stub);
+            $stub = File::get(__DIR__.'/stubs/route/create.stub');
+            $name = str_replace('DummyName', $this->name, $stub);
             $class = str_replace('DummyClass', $this->class, $name);
 
             File::put("$dir/$this->class.php", $class);
         }
 
         // add loop to the main routes.php
-        $search             = '(File::allFiles(__DIR__.\'/Routes\')';
-        $route_file         = app_path('Http/routes.php');
+        $search = '(File::allFiles(__DIR__.\'/Routes\')';
+        $route_file = app_path('Http/routes.php');
         $route_file_content = File::get(__DIR__.'/stubs/route/web.stub');
 
         if (!str_contains(File::get($route_file), $search)) {
@@ -295,7 +295,7 @@ class MakeAll extends Command
     }
 
     /**
-     * [compDump description].
+     * composer dump-autoload.
      *
      * @return [type] [description]
      */
