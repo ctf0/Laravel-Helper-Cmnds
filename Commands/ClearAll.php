@@ -65,6 +65,7 @@ class ClearAll extends Command
     {
         $comp = new Process('composer dump-autoload');
         $comp->setWorkingDirectory(base_path());
-        $comp->run();
+
+        return $comp->run();
     }
 }
