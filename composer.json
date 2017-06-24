@@ -1,0 +1,35 @@
+{
+    "name": "ctf0/laravel-helper-cmnds",
+    "description": "Some Helper Console Cmnds For Laravel To Speedup The Usual Workflow",
+    "keywords": [
+        "ctf0",
+        "LaravelHelperCmnds"
+    ],
+    "homepage": "https://github.com/ctf0/Laravel-Helper-Cmnds",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Muah",
+            "email": "muah003@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "5.3.*|5.4.*",
+        "php" : "~5.6|~7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ctf0\\LaravelHelperCmnds\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ctf0\\LaravelHelperCmnds\\LaravelHelperCmndsServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Models\DummyModelClass;
+use App\Http\Requests\DummyModelClassStoreRequest;
+use App\Http\Requests\DummyModelClassUpdateRequest;
+
+class DummyClass extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('pages.DummyView.index');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('pages.DummyView.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(DummyModelClassStoreRequest $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  App\Http\Models\DummyModelClass  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(DummyModelClass $id)
+    {
+        return view('pages.DummyView.show');
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  App\Http\Models\DummyModelClass  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(DummyModelClass $id)
+    {
+        return view('pages.DummyView.edit');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Models\DummyModelClass  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(DummyModelClassUpdateRequest $request, DummyModelClass $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  App\Http\Models\DummyModelClass  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(DummyModelClass $id)
+    {
+        //
+    }
+}

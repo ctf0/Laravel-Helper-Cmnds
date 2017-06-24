@@ -1,0 +1,74 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+
+class DummyClass extends FormRequest
+{
+    protected $error_container = [];
+
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return false;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            //
+        ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @param \Illuminate\Contracts\Validation\Validator $validator
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function failedValidation(ValidatorContract $contract)
+    {
+        throw new ValidationException(
+            $contract,
+            $this->response(
+                array_replace_recursive(
+                    $this->formatErrors($contract),
+                    $this->error_container
+                )
+            )
+        );
+    }
+
+    /**
+     * any extra validation.
+     *
+     * @param [type] $instance [description]
+     *
+     * @return [type] [description]
+     */
+    protected function withValidator($validator)
+    {
+        $request = $this->instance();
+
+        $validator->after(function ($validator) use ($request) {
+
+            $input_name = 'something';
+
+            // https://ctf0.wordpress.com/2016/10/16/extend-formrequest-to-allow-more-functionality-in-laravel-v5-3/
+
+        });
+    }
+}

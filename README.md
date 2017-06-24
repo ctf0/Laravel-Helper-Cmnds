@@ -1,9 +1,21 @@
-# Laravel-Helper-Cmnds
-A Helper Console Cmnds For Laravel To Speedup The Usual Workflow
+## Installation
 
-- For [v5.3 / v5.4](https://github.com/ctf0/Laravel-Helper-Cmnds/tree/v5.3)
-- For [V5.2](https://github.com/ctf0/Laravel-Helper-Cmnds/tree/v5.2)
+- `composer require ctf0/laravel-helper-cmnds`
 
-# ToDo
+- add the service provider to `config/app.php`
+```php
+'providers' => [
+    ctf0\LaravelHelperCmnds\LaravelHelperCmndsServiceProvider::class
+]
+```
 
-* [ ] Turn into Package.
+## Usage
+
+```bash
+ex:clear       # Clear (Cache/Config/Route-Cache/View/Session/Compiled/Laravel-LogFile/Pass-Resets)
+ex:finetune    # optimize & cache config
+ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
+ex:remigrate   # migrate:refresh + seed & cache clear
+```
+
+[Wiki](https://github.com/ctf0/Laravel-Helper-Cmnds/wiki/Usage)
