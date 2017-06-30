@@ -6,7 +6,6 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
-use Symfony\Component\Process\Process;
 
 class ClearAll extends Command
 {
@@ -55,21 +54,8 @@ class ClearAll extends Command
         event('clearAll.done');
 
         // composer dump-autoload.
-        $this->compDump();
+        shell_exec('composer dump-autoload');
 
         $this->info('All Done');
-    }
-
-    /**
-     * composer dump-autoload.
-     *
-     * @return [type] [description]
-     */
-    protected function compDump()
-    {
-        $comp = new Process('composer dump-autoload');
-        $comp->setWorkingDirectory(base_path());
-
-        return $comp->run();
     }
 }
