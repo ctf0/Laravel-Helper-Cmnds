@@ -3,7 +3,6 @@
 namespace ctf0\LaravelHelperCmnds\Commands;
 
 use Illuminate\Console\Command;
-use Symfony\Component\Process\Process;
 
 class FineTune extends Command
 {
@@ -36,12 +35,10 @@ class FineTune extends Command
      */
     public function handle()
     {
-        $comp = new Process('composer dump-autoload');
-        $comp->setWorkingDirectory(base_path());
-        $comp->run();
-
+        shell_exec('composer dump-autoload');
         $this->callSilent('optimize');
         $this->callSilent('config:cache');
+        $this->callSilent('route:cache');
 
         $this->info('All Done');
     }
