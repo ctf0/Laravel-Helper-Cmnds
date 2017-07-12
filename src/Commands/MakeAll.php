@@ -4,7 +4,6 @@ namespace ctf0\LaravelHelperCmnds\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Symfony\Component\Process\Process;
 
 class MakeAll extends Command
 {
@@ -88,7 +87,7 @@ class MakeAll extends Command
         }
 
         // composer dump-autoload
-        $this->compDump();
+        shell_exec('composer dump-autoload');
 
         $this->info('All Done');
     }
@@ -288,18 +287,5 @@ class MakeAll extends Command
         if (!File::exists($dir)) {
             return File::makeDirectory($dir, 0755, true);
         }
-    }
-
-    /**
-     * composer dump-autoload.
-     *
-     * @return [type] [description]
-     */
-    protected function compDump()
-    {
-        $comp = new Process('composer dump-autoload');
-        $comp->setWorkingDirectory(base_path());
-
-        return $comp->run();
     }
 }

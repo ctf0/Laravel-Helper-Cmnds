@@ -27,8 +27,9 @@ ex:remigrate   # migrate:refresh + seed & cache clear
 >  - Session::flush()
 >  - File::put(storage_path('logs/laravel.log'), '');
 >  - php artisan auth:clear-resets `if the table was migrated`
+>  - composer dump-autoload
 
-* an event gets fired when this command has finished in case you want to run something else after it, and you can hook into it through: 
+* an event gets fired when this command has finished in case you want to run something else after it, and you can hook into it through:
     ```php
     // app/Providers/EventServiceProvider.php
     public function boot()
@@ -42,9 +43,10 @@ ex:remigrate   # migrate:refresh + seed & cache clear
     ```
 
 2- ex:finetune
+>  - composer dump-autoload
 >  - php artisan optimize
 >  - php artisan config:cache
->  - composer dump-autoload
+>  - php artisan route:cache
 
 3- ex:make (for a two word className ex. `SubPage`, write it as `sub_page`)
 > - Validation [y/N] [Read More](https://ctf0.wordpress.com/2016/10/16/extend-formrequest-to-allow-more-functionality-in-laravel-v5-3/).
@@ -62,7 +64,7 @@ ex:remigrate   # migrate:refresh + seed & cache clear
 >
 > - Seeder [y/N]
     - php artisan make:seeder
-    - create seeder file & register it under `DatabaseSeeder::run()`.
+    - create a seeder file & register it under `DatabaseSeeder::run()`.
 >
 > - Routes [y/N] [Also Check](http://code4fun.io/post/how-to-share-data-with-all-views-in-laravel-5-3-the-right-way)
     - creates a new folder in `routes/WebRoutes/ClassName.php`.
