@@ -3,7 +3,9 @@
     "description": "Some Helper Console Cmnds For Laravel To Speedup The Usual Workflow",
     "keywords": [
         "ctf0",
-        "LaravelHelperCmnds"
+        "LaravelHelperCmnds",
+        "helper commands",
+        "laravel"
     ],
     "homepage": "https://github.com/ctf0/Laravel-Helper-Cmnds",
     "license": "MIT",
