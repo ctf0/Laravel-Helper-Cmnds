@@ -1,6 +1,6 @@
 ## Installation
 
-- `composer require ctf0/helper-cmnds`
+- `composer require ctf0/laravel-helper-cmnds`
 
 - add the service provider to `config/app.php`
 ```php
