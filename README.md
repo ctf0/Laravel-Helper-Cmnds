@@ -1,6 +1,8 @@
 ## Installation
 
-- `composer require ctf0/helper-cmnds`
+- name changed from `laravel-helper-cmnds` to `helper-cmnds`
+
+`composer require ctf0/helper-cmnds`
 
 - add the service provider to `config/app.php`
 ```php
