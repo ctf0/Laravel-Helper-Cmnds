@@ -11,14 +11,12 @@ class LaravelHelperCmndsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                Commands\ClearAll::class,
-                Commands\MakeAll::class,
-                Commands\FineTune::class,
-                Commands\ReMigrate::class,
-            ]);
-        }
+        $this->commands([
+            Commands\ClearAll::class,
+            Commands\MakeAll::class,
+            Commands\FineTune::class,
+            Commands\ReMigrate::class,
+        ]);
     }
 
     /**
