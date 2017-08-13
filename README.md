@@ -17,7 +17,6 @@
 ex:clear       # Clear (Cache/Config/Route-Cache/View/Session/Compiled/Laravel-LogFile/Pass-Resets)
 ex:finetune    # optimize & cache config
 ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
-ex:remigrate   # migrate:refresh + seed & cache clear
 ```
 
 1- ex:clear
@@ -76,7 +75,3 @@ ex:remigrate   # migrate:refresh + seed & cache clear
     - create a new folder in `resources/views/pages/ClassName/` + files for **'index/create/show/edit'**.
 >
 > - composer dump-autoload
-
-4- ex:remigrate
->  - php artisan ex:clear
->  - php artisan migrate:refresh --seed

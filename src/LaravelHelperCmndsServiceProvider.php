@@ -15,7 +15,6 @@ class LaravelHelperCmndsServiceProvider extends ServiceProvider
             Commands\ClearAll::class,
             Commands\MakeAll::class,
             Commands\FineTune::class,
-            Commands\ReMigrate::class,
         ]);
     }
 
