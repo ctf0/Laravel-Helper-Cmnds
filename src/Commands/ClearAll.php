@@ -39,11 +39,19 @@ class ClearAll extends Command
     public function handle()
     {
         $this->callSilent('clear-compiled');
-        $this->callSilent('cache:clear');
         $this->callSilent('config:clear');
         $this->callSilent('route:clear');
         $this->callSilent('view:clear');
+
+        // cache
+        $this->callSilent('cache:clear');
+        app('cache')->store('file')->flush();
+
+        // session
         Session::flush();
+        File::cleanDirectory(config('session.files'));
+
+        // log
         File::put(storage_path('logs/laravel.log'), '');
 
         if (Schema::hasTable('password_resets')) {
