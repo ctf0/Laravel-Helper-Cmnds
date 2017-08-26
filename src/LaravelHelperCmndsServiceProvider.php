@@ -17,11 +17,4 @@ class LaravelHelperCmndsServiceProvider extends ServiceProvider
             Commands\FineTune::class,
         ]);
     }
-
-    /**
-     * Register any package services.
-     */
-    public function register()
-    {
-    }
 }

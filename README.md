@@ -15,17 +15,19 @@
 
 ```bash
 ex:clear       # Clear (Cache/Config/Route-Cache/View/Session/Compiled/Laravel-LogFile/Pass-Resets)
-ex:finetune    # optimize & cache config
+ex:finetune    # Cache (Config/Routes)
 ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 ```
 
 1- ex:clear
 >  - php artisan clear-compiled
->  - php artisan cache:clear
 >  - php artisan config:clear
 >  - php artisan route:clear
 >  - php artisan view:clear
+>  - php artisan cache:clear
+>  - Cache::store('file')->flush();
 >  - Session::flush()
+>  - File::cleanDirectory(config('session.files'));
 >  - File::put(storage_path('logs/laravel.log'), '');
 >  - php artisan auth:clear-resets `if the table was migrated`
 >  - composer dump-autoload
@@ -45,7 +47,6 @@ ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 
 2- ex:finetune
 >  - composer dump-autoload
->  - php artisan optimize
 >  - php artisan config:cache
 >  - php artisan route:cache
 

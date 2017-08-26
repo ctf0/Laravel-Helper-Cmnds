@@ -18,7 +18,7 @@ class FineTune extends Command
      *
      * @var string
      */
-    protected $description = 'optimize & cache route/config';
+    protected $description = 'cache route/config';
 
     /**
      * Create a new command instance.
@@ -36,7 +36,6 @@ class FineTune extends Command
     public function handle()
     {
         shell_exec('composer dump-autoload');
-        $this->callSilent('optimize');
         $this->callSilent('config:cache');
         $this->callSilent('route:cache');
 
