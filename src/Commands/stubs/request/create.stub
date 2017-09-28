@@ -33,26 +33,6 @@ class DummyClass extends FormRequest
     }
 
     /**
-     * Handle a failed validation attempt.
-     *
-     * @param \Illuminate\Contracts\Validation\Validator $validator
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    protected function failedValidation(ValidatorContract $contract)
-    {
-        throw new ValidationException(
-            $contract,
-            $this->response(
-                array_replace_recursive(
-                    $this->formatErrors($contract),
-                    $this->error_container
-                )
-            )
-        );
-    }
-
-    /**
      * any extra validation.
      *
      * @param [type] $instance [description]
