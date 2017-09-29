@@ -3,7 +3,6 @@
     "description": "Some Helper Console Cmnds For Laravel To Speedup The Usual Workflow",
     "keywords": [
         "ctf0",
-        "LaravelHelperCmnds",
         "helper commands",
         "laravel"
     ],
@@ -16,8 +15,9 @@
         }
     ],
     "require": {
+        "php" : "~7.0",
         "illuminate/support": "5.5.*",
-        "php" : "~7.0"
+        "ctf0/package-changelog": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -27,7 +27,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "ctf0\\LaravelHelperCmnds\\LaravelHelperCmndsServiceProvider"
+                "ctf0\\LaravelHelperCmnds\\LaravelHelperCmndsServiceProvider",
+                "ctf0\\PackageChangeLog\\PackageChangeLogServiceProvider"
             ]
         }
     },
