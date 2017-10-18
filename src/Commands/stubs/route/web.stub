@@ -1,6 +1,4 @@
 
-if ( ! app()->runningInConsole()) {
-    foreach (File::allFiles(__DIR__.'/WebRoutes') as $route_file) {
-        require $route_file->getPathname();
-    }
+foreach (app('files')->allFiles(__DIR__.'/WebRoutes') as $route_file) {
+    require $route_file->getPathname();
 }

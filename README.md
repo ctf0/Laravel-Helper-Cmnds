@@ -1,10 +1,15 @@
+# Laravel Helper Cmnds
+
+[![Latest Stable Version](https://img.shields.io/packagist/v/ctf0/helper-cmnds.svg?style=for-the-badge)](https://packagist.org/packages/ctf0/helper-cmnds) [![Total Downloads](https://img.shields.io/packagist/dt/ctf0/helper-cmnds.svg?style=for-the-badge)](https://packagist.org/packages/ctf0/helper-cmnds)
+
+A helper console cmnds to speedup the usual workflow.
+
 ## Installation
 
-- name changed from `laravel-helper-cmnds` to `helper-cmnds`
+- `composer require ctf0/helper-cmnds`
 
-`composer require ctf0/helper-cmnds`
+- (Laravel < 5.5) add the service provider
 
-- add the service provider to `config/app.php`
 ```php
 'providers' => [
     ctf0\LaravelHelperCmnds\LaravelHelperCmndsServiceProvider::class
@@ -20,6 +25,7 @@ ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 ```
 
 1- ex:clear
+
 >  - php artisan clear-compiled
 >  - php artisan config:clear
 >  - php artisan route:clear
@@ -46,11 +52,13 @@ ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
     ```
 
 2- ex:finetune
+
 >  - composer dump-autoload
 >  - php artisan config:cache
 >  - php artisan route:cache
 
 3- ex:make (for a two word className ex. `SubPage`, write it as `sub_page`)
+
 > - Validation [y/N] [Read More](https://ctf0.wordpress.com/2016/10/16/extend-formrequest-to-allow-more-functionality-in-laravel-v5-3/).
     - create 2 classes for **Update & Store** `php artisan make:request {name}`
     - register the **FormRequest** classes to the controller automatically

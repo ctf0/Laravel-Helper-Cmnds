@@ -3,9 +3,7 @@
 namespace ctf0\LaravelHelperCmnds\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Session;
 
 class ClearAll extends Command
 {
@@ -48,11 +46,11 @@ class ClearAll extends Command
         app('cache')->store('file')->flush();
 
         // session
-        Session::flush();
-        File::cleanDirectory(config('session.files'));
+        session()->flush();
+        app('files')->cleanDirectory(config('session.files'));
 
         // log
-        File::put(storage_path('logs/laravel.log'), '');
+        app('files')->put(storage_path('logs/laravel.log'), '');
 
         if (Schema::hasTable('password_resets')) {
             $this->callSilent('auth:clear-resets');
