@@ -60,27 +60,25 @@ ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 3- ex:make (for a two word className ex. `SubPage`, write it as `sub_page`)
 
 > - Validation [y/N] [Read More](https://ctf0.wordpress.com/2016/10/16/extend-formrequest-to-allow-more-functionality-in-laravel-v5-3/).
-    - create 2 classes for **Update & Store** `php artisan make:request {name}`
-    - register the **FormRequest** classes to the controller automatically
+>   - create 2 classes for **Update & Store** `php artisan make:request {name}`
+>   - register the **FormRequest** classes to the controller automatically
 >
 > - Controller
-    - if "Route Model Binding" we will add the **Model** class to the controller automatically
-    - php artisan make:controller --resource
+>   - if "Route Model Binding" we will add the **Model** class to the controller automatically
+>   - php artisan make:controller --resource
 >
 > - Model & Migration
-    - create `App/Http/Models/BaseModel.php` if not found
-    - create `App/Http/Models/ClassName.php`
-    - `php artisan make:migration {name} --create`
+>   - create `App/Http/Models/BaseModel.php` if not found
+>   - create `App/Http/Models/ClassName.php`
+>   - `php artisan make:migration {name} --create`
 >
 > - Seeder [y/N]
-    - php artisan make:seeder
-    - create a seeder file & register it under `DatabaseSeeder::run()`.
+>   - php artisan make:seeder
+>   - create a seeder file & register it under `DatabaseSeeder::run()`.
 >
 > - Routes [y/N] [Also Check](http://code4fun.io/post/how-to-share-data-with-all-views-in-laravel-5-3-the-right-way)
-    - creates a new folder in `routes/WebRoutes/ClassName.php`.
-    - append a loop to `web.php` to include all the files from the `routes/WebRoutes` folder.
+>   - creates a new folder in `routes/WebRoutes/ClassName.php`.
+>   - append a loop to `web.php` to include all the files from the `routes/WebRoutes` folder.
 >
 > - Views [y/N]
-    - create a new folder in `resources/views/pages/ClassName/` + files for **'index/create/show/edit'**.
->
-> - composer dump-autoload
+>   - create a new folder in `resources/views/pages/ClassName/` + files for **'index/create/show/edit'**.
