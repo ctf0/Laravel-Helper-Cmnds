@@ -1,6 +1,7 @@
 # Laravel Helper Cmnds
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/ctf0/helper-cmnds.svg?style=for-the-badge)](https://packagist.org/packages/ctf0/helper-cmnds) [![Total Downloads](https://img.shields.io/packagist/dt/ctf0/helper-cmnds.svg?style=for-the-badge)](https://packagist.org/packages/ctf0/helper-cmnds)
+[![Latest Stable Version](https://img.shields.io/packagist/v/ctf0/helper-cmnds.svg)](https://packagist.org/packages/ctf0/helper-cmnds) [![Total Downloads](https://img.shields.io/packagist/dt/ctf0/helper-cmnds.svg)](https://packagist.org/packages/ctf0/helper-cmnds)
+[![Donate with Bitcoin](https://en.cryptobadges.io/badge/micro/16ri7Hh848bw7vxbEevKHFuHXLmsV8Vc9L)](https://en.cryptobadges.io/donate/16ri7Hh848bw7vxbEevKHFuHXLmsV8Vc9L)
 
 A helper console cmnds to speedup the usual workflow.
 
