@@ -174,7 +174,7 @@ class MakeAll extends Command
      */
     protected function createModel()
     {
-        $dir = app_path('Http/Models');
+        $dir = app_path('Models');
         $this->checkDirExistence($dir);
 
         if (!app('files')->exists("$dir/BaseModel.php")) {

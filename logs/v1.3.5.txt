@@ -1,0 +1,1 @@
+- move models to app directory instead of app/http

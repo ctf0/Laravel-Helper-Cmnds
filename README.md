@@ -69,8 +69,8 @@ ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 >   - php artisan make:controller --resource
 >
 > - Model & Migration
->   - create `App/Http/Models/BaseModel.php` if not found
->   - create `App/Http/Models/ClassName.php`
+>   - create `App/Models/BaseModel.php` if not found
+>   - create `App/Models/ClassName.php`
 >   - `php artisan make:migration {name} --create`
 >
 > - Seeder [y/N]

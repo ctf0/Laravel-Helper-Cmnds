@@ -30,7 +30,8 @@
                 "ctf0\\LaravelHelperCmnds\\LaravelHelperCmndsServiceProvider",
                 "ctf0\\PackageChangeLog\\PackageChangeLogServiceProvider"
             ]
-        }
+        },
+        "changeLog": "logs"
     },
     "config": {
         "sort-packages": true
