@@ -63,8 +63,16 @@ class MakeAll extends Command
             }
         }
 
-        // create model
         // create migration
+        if ($this->confirm('Do you wish to create a Migration File ?')) {
+            $table = str_plural(snake_case(class_basename($this->class)));
+            $this->callSilent('make:migration', [
+                'name'     => "create_{$table}_table",
+                '--create' => $table,
+            ]);
+        }
+
+        // create model
         $this->createModel();
 
         // create a seeder
@@ -188,13 +196,6 @@ class MakeAll extends Command
 
             app('files')->put("$dir/$this->class.php", $class);
         }
-
-        // create migration
-        $table = str_plural(snake_case(class_basename($this->class)));
-        $this->callSilent('make:migration', [
-            'name'     => "create_{$table}_table",
-            '--create' => $table,
-        ]);
     }
 
     /**
