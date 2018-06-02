@@ -52,6 +52,7 @@ class ClearAll extends Command
         // log
         app('files')->put(storage_path('logs/laravel.log'), '');
 
+        // password_resets
         if (Schema::hasTable('password_resets')) {
             $this->callSilent('auth:clear-resets');
         }
