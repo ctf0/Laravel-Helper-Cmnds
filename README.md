@@ -1,8 +1,12 @@
-# Laravel Helper Cmnds
-
-[![Latest Stable Version](https://img.shields.io/packagist/v/ctf0/helper-cmnds.svg)](https://packagist.org/packages/ctf0/helper-cmnds) [![Total Downloads](https://img.shields.io/packagist/dt/ctf0/helper-cmnds.svg)](https://packagist.org/packages/ctf0/helper-cmnds)
+<h1 align="center">
+    Laravel Helper Cmnds
+    <br>
+    <a href="https://packagist.org/packages/ctf0/helper-cmnds"><img src="https://img.shields.io/packagist/v/ctf0/helper-cmnds.svg" alt="Latest Stable Version" /></a> <a href="https://packagist.org/packages/ctf0/helper-cmnds"><img src="https://img.shields.io/packagist/dt/ctf0/helper-cmnds.svg" alt="Total Downloads" /></a>
+</h1>
 
 A helper console cmnds to speedup the usual workflow.
+
+<br>
 
 ## Installation
 
@@ -16,6 +20,8 @@ A helper console cmnds to speedup the usual workflow.
     ]
     ```
 
+<br>
+
 ## Usage
 
 ```bash
@@ -24,7 +30,7 @@ ex:finetune    # Cache (Config/Routes)
 ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 ```
 
-1- ex:clear
+**1-** ex:clear
 
 >  - php artisan clear-compiled
 >  - php artisan config:clear
@@ -51,13 +57,17 @@ ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
     }
     ```
 
-2- ex:finetune
+<br>
+
+**2-** ex:finetune
 
 >  - composer dump-autoload
 >  - php artisan config:cache
 >  - php artisan route:cache
 
-3- ex:make (for a two word className ex. `SubPage`, write it as `sub_page`)
+<br>
+
+**3-** ex:make (for a two word className ex. `SubPage`, write it as `sub_page`)
 
 > - Validation [y/N] [Read More](https://ctf0.wordpress.com/2016/10/16/extend-formrequest-to-allow-more-functionality-in-laravel-v5-3/).
 >   - create 2 classes for **Update & Store** `php artisan make:request {name}`
