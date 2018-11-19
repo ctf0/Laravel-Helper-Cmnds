@@ -16,7 +16,8 @@ A helper console cmnds to speedup the usual workflow.
 
     ```php
     'providers' => [
-        ctf0\LaravelHelperCmnds\LaravelHelperCmndsServiceProvider::class
+        ctf0\LaravelHelperCmnds\LaravelHelperCmndsServiceProvider::class,
+        ctf0\PackageChangeLog\PackageChangeLogServiceProvider::class
     ]
     ```
 
