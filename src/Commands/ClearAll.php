@@ -14,6 +14,8 @@ class ClearAll extends Command
      */
     protected $signature = 'ex:clear';
 
+    protected $files;
+
     /**
      * The console command description.
      *
@@ -26,6 +28,8 @@ class ClearAll extends Command
      */
     public function __construct()
     {
+        $this->files = app('files');
+
         parent::__construct();
     }
 
@@ -47,10 +51,10 @@ class ClearAll extends Command
 
         // session
         session()->flush();
-        app('files')->cleanDirectory(config('session.files'));
+        $this->files->cleanDirectory(config('session.files'));
 
         // log
-        app('files')->put(storage_path('logs/laravel.log'), '');
+        $this->files->put(storage_path('logs/laravel.log'), '');
 
         // password_resets
         if (Schema::hasTable('password_resets')) {

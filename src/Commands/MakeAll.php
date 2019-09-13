@@ -2,6 +2,7 @@
 
 namespace ctf0\LaravelHelperCmnds\Commands;
 
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
@@ -17,19 +18,22 @@ class MakeAll extends Command
     protected $class;
     protected $name;
     protected $validation;
+    protected $files;
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Make (Model,Controller,Migration,Seeder,Route,View)';
+    protected $description = 'Make (Model, Controller, Migration, Seeder, Route, View)';
 
     /**
      * Create a new command instance.
      */
     public function __construct()
     {
+        $this->files = app('files');
+
         parent::__construct();
     }
 
@@ -40,7 +44,7 @@ class MakeAll extends Command
      */
     public function handle()
     {
-        $this->class = studly_case($this->ask('What is the Class name ex.abc'));
+        $this->class = Str::studly($this->ask('What is the Class name ex.abc'));
         $this->name  = strtolower($this->class);
 
         // create validations
@@ -65,7 +69,7 @@ class MakeAll extends Command
 
         // create migration
         if ($this->confirm('Do you wish to create a Migration File ?')) {
-            $table = str_plural(snake_case(class_basename($this->class)));
+            $table = Str::plural(Str::snake(class_basename($this->class)));
             $this->callSilent('make:migration', [
                 'name'     => "create_{$table}_table",
                 '--create' => $table,
@@ -78,7 +82,7 @@ class MakeAll extends Command
         // create a seeder
         if ($this->confirm('Do you wish to create & register a DB Seeder ?')) {
             $this->callSilent('make:seeder', [
-                'name' => str_plural($this->class) . 'TableSeeder',
+                'name' => Str::plural($this->class) . 'TableSeeder',
             ]);
 
             $this->registerSeederFile();
@@ -119,11 +123,12 @@ class MakeAll extends Command
 
         foreach ($methods as $one) {
             $fileName = $this->class . $one . 'Request';
-            if (!app('files')->exists("$dir/$fileName.php")) {
-                $stub  = app('files')->get(__DIR__ . '/stubs/request/create.stub');
+
+            if (!$this->files->exists("$dir/$fileName.php")) {
+                $stub  = $this->files->get(__DIR__ . '/stubs/request/create.stub');
                 $class = str_replace('DummyClass', $fileName, $stub);
 
-                app('files')->put("$dir/$fileName.php", $class);
+                $this->files->put("$dir/$fileName.php", $class);
             }
         }
     }
@@ -139,16 +144,17 @@ class MakeAll extends Command
         $this->checkDirExistence($dir);
 
         $controller = $this->class . 'Controller';
-        if (!app('files')->exists("$dir/$controller.php")) {
+
+        if (!$this->files->exists("$dir/$controller.php")) {
             $stub = $this->validation
-            ? app('files')->get(__DIR__ . '/stubs/controller/rmb_request.stub')
-            : app('files')->get(__DIR__ . '/stubs/controller/rmb.stub');
+            ? $this->files->get(__DIR__ . '/stubs/controller/rmb_request.stub')
+            : $this->files->get(__DIR__ . '/stubs/controller/rmb.stub');
 
             $class = str_replace('DummyClass', $controller, $stub);
             $model = str_replace('DummyModelClass', $this->class, $class);
             $view  = str_replace('DummyView', $this->name, $model);
 
-            app('files')->put("$dir/$controller.php", $view);
+            $this->files->put("$dir/$controller.php", $view);
         }
     }
 
@@ -163,15 +169,16 @@ class MakeAll extends Command
         $this->checkDirExistence($dir);
 
         $controller = $this->class . 'Controller';
-        if (!app('files')->exists("$dir/$controller.php")) {
-            $stub  = app('files')->get(__DIR__ . '/stubs/controller/plain_request.stub');
+
+        if (!$this->files->exists("$dir/$controller.php")) {
+            $stub  = $this->files->get(__DIR__ . '/stubs/controller/plain_request.stub');
             $class = str_replace('DummyClass', $controller, $stub);
             $model = str_replace('DummyModelClass', $this->class, $class);
             $view  = str_replace('DummyView', $this->name, $model);
 
             $final = $view;
 
-            app('files')->put("$dir/$controller.php", $final);
+            $this->files->put("$dir/$controller.php", $final);
         }
     }
 
@@ -185,16 +192,16 @@ class MakeAll extends Command
         $dir = app_path('Models');
         $this->checkDirExistence($dir);
 
-        if (!app('files')->exists("$dir/BaseModel.php")) {
-            app('files')->copy(__DIR__ . '/stubs/model/BaseModel.php', "$dir/BaseModel.php");
+        if (!$this->files->exists("$dir/BaseModel.php")) {
+            $this->files->copy(__DIR__ . '/stubs/model/BaseModel.php', "$dir/BaseModel.php");
         }
 
         // create model
-        if (!app('files')->exists("$dir/$this->class.php")) {
-            $stub  = app('files')->get(__DIR__ . '/stubs/model/create.stub');
+        if (!$this->files->exists("$dir/$this->class.php")) {
+            $stub  = $this->files->get(__DIR__ . '/stubs/model/create.stub');
             $class = str_replace('DummyClass', $this->class, $stub);
 
-            app('files')->put("$dir/$this->class.php", $class);
+            $this->files->put("$dir/$this->class.php", $class);
         }
     }
 
@@ -205,11 +212,11 @@ class MakeAll extends Command
      */
     protected function registerSeederFile()
     {
-        $stub = app('files')->get(__DIR__ . '/stubs/db/seeder.stub');
-        $seed = str_replace('DummySeed', str_plural($this->class), $stub);
+        $stub = $this->files->get(__DIR__ . '/stubs/db/seeder.stub');
+        $seed = str_replace('DummySeed', Str::plural($this->class), $stub);
         $dir  = database_path('seeds/DatabaseSeeder.php');
 
-        if (!str_contains(app('files')->get($dir), str_plural($this->class))) {
+        if (!Str::contains($this->files->get($dir), Str::plural($this->class))) {
             $file = file($dir);
             for ($i = 0; $i < count($file); ++$i) {
                 if (strstr($file[$i], '$this->')) {
@@ -218,7 +225,7 @@ class MakeAll extends Command
                 }
             }
 
-            return app('files')->put($dir, $file);
+            return $this->files->put($dir, $file);
         }
     }
 
@@ -232,21 +239,21 @@ class MakeAll extends Command
         $dir = base_path('routes/WebRoutes');
         $this->checkDirExistence($dir);
 
-        if (!app('files')->exists("$dir/$this->class.php")) {
-            $stub  = app('files')->get(__DIR__ . '/stubs/route/create.stub');
+        if (!$this->files->exists("$dir/$this->class.php")) {
+            $stub  = $this->files->get(__DIR__ . '/stubs/route/create.stub');
             $name  = str_replace('DummyName', $this->name, $stub);
             $class = str_replace('DummyClass', $this->class, $name);
 
-            app('files')->put("$dir/$this->class.php", $class);
+            $this->files->put("$dir/$this->class.php", $class);
         }
 
         // add loop to the main routes.php
         $search             = '(app(\'files\')->allFiles(__DIR__.\'/WebRoutes\')';
         $route_file         = base_path('routes/web.php');
-        $route_file_content = app('files')->get(__DIR__ . '/stubs/route/web.stub');
+        $route_file_content = $this->files->get(__DIR__ . '/stubs/route/web.stub');
 
-        if (!str_contains(app('files')->get($route_file), $search)) {
-            app('files')->append($route_file, $route_file_content);
+        if (!Str::contains($this->files->get($route_file), $search)) {
+            $this->files->append($route_file, $route_file_content);
         }
     }
 
@@ -267,11 +274,11 @@ class MakeAll extends Command
             'edit',
         ];
 
-        $stub = app('files')->get(__DIR__ . '/stubs/view/create.stub');
+        $stub = $this->files->get(__DIR__ . '/stubs/view/create.stub');
 
         foreach ($methods as $one) {
-            if (!app('files')->exists("$dir/$one.blade.php")) {
-                app('files')->put("$dir/$one.blade.php", $stub);
+            if (!$this->files->exists("$dir/$one.blade.php")) {
+                $this->files->put("$dir/$one.blade.php", $stub);
             }
         }
     }
@@ -285,8 +292,8 @@ class MakeAll extends Command
      */
     protected function checkDirExistence($dir)
     {
-        if (!app('files')->exists($dir)) {
-            return app('files')->makeDirectory($dir, 0755, true);
+        if (!$this->files->exists($dir)) {
+            return $this->files->makeDirectory($dir, 0755, true);
         }
     }
 }
