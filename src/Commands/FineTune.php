@@ -36,8 +36,10 @@ class FineTune extends Command
     public function handle()
     {
         shell_exec('composer dump-autoload');
+        $this->callSilent('optimize');
         $this->callSilent('config:cache');
         $this->callSilent('route:cache');
+        $this->callSilent('view:cache');
 
         $this->info('All Done');
     }

@@ -21,7 +21,7 @@ class ClearAll extends Command
      *
      * @var string
      */
-    protected $description = 'Clear cache/config/route/view/compiled/pass-resets';
+    protected $description = 'Clear bootstrap-files/cache/config/route/view/compiled/pass-resets';
 
     /**
      * Create a new command instance.
@@ -41,6 +41,7 @@ class ClearAll extends Command
     public function handle()
     {
         $this->callSilent('clear-compiled');
+        $this->callSilent('optimize:clear');
         $this->callSilent('config:clear');
         $this->callSilent('route:clear');
         $this->callSilent('view:clear');
