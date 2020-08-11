@@ -66,9 +66,7 @@ ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 
 > - composer dump-autoload
 > - php artisan optimize
-> - php artisan config:cache
 > - php artisan view:cache
-> - php artisan route:cache
 
 <br>
 
