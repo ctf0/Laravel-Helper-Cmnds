@@ -53,6 +53,10 @@ class ClearAll extends Command
         // session
         session()->flush();
         $this->files->cleanDirectory(config('session.files'));
+        
+        if (Schema::hasTable(config('session.table'))) {
+            \DB::table(config('session.table'))->truncate();
+        }
 
         // log
         $this->files->put(storage_path('logs/laravel.log'), '');
