@@ -12,15 +12,6 @@ A helper console cmnds to speedup the usual workflow.
 
 - `composer require ctf0/helper-cmnds`
 
-- (Laravel < 5.5) add the service provider
-
-    ```php
-    'providers' => [
-        ctf0\LaravelHelperCmnds\LaravelHelperCmndsServiceProvider::class,
-        ctf0\PackageChangeLog\PackageChangeLogServiceProvider::class
-    ]
-    ```
-
 <br>
 
 ## Usage
@@ -33,12 +24,7 @@ ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 
 **1-** ex:clear
 
-> - php artisan clear-compiled
 > - php artisan optimize:clear
-> - php artisan config:clear
-> - php artisan route:clear
-> - php artisan view:clear
-> - php artisan cache:clear
 > - Cache::store('file')->flush();
 > - Session::flush()
 > - File::cleanDirectory(config('session.files'));

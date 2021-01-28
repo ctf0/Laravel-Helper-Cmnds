@@ -40,29 +40,29 @@ class ClearAll extends Command
      */
     public function handle()
     {
-        $this->callSilent('clear-compiled');
         $this->callSilent('optimize:clear');
-        $this->callSilent('config:clear');
-        $this->callSilent('route:clear');
-        $this->callSilent('view:clear');
 
         // cache
-        $this->callSilent('cache:clear');
         app('cache')->store('file')->flush();
 
         // session
         session()->flush();
         $this->files->cleanDirectory(config('session.files'));
         
-        if (Schema::hasTable(config('session.table'))) {
-            \DB::table(config('session.table'))->truncate();
+        $table = config('session.table');
+        
+        if (Schema::hasTable($table)) {
+            \DB::table($table)->truncate();
         }
 
         // log
         $this->files->put(storage_path('logs/laravel.log'), '');
 
         // password_resets
-        if (Schema::hasTable('password_resets')) {
+        $guard = config('auth.defaults.passwords');
+        $table = config("auth.passwords.$guard.table");
+        
+        if (Schema::hasTable($table)) {
             $this->callSilent('auth:clear-resets');
         }
 

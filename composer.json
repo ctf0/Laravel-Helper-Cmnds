@@ -15,7 +15,7 @@
         }
     ],
     "require": {
-        "illuminate/support": ">=5.4 <9.0",
+        "illuminate/support": ">=6 <9.0",
         "ctf0/package-changelog": "*"
     },
     "autoload": {
@@ -26,8 +26,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "ctf0\\LaravelHelperCmnds\\LaravelHelperCmndsServiceProvider",
-                "ctf0\\PackageChangeLog\\PackageChangeLogServiceProvider"
+                "ctf0\\LaravelHelperCmnds\\LaravelHelperCmndsServiceProvider"
             ]
         },
         "changeLog": "logs"
