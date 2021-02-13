@@ -18,7 +18,7 @@ class FineTune extends Command
      *
      * @var string
      */
-    protected $description = 'cache route/config';
+    protected $description = 'cache route/config/view/event';
 
     /**
      * Create a new command instance.
@@ -38,6 +38,7 @@ class FineTune extends Command
         shell_exec('composer dump-autoload');
         $this->callSilent('optimize');
         $this->callSilent('view:cache');
+        $this->callSilent('event:cache');
 
         $this->info('All Done');
     }

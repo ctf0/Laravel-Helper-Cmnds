@@ -18,7 +18,7 @@ A helper console cmnds to speedup the usual workflow.
 
 ```bash
 ex:clear       # Clear (Bootstrap-Files/Cache/Config/Route-Cache/View/Session/Compiled/Laravel-LogFile/Pass-Resets)
-ex:finetune    # Cache (View/Config/Routes/Bootstrap-Files)
+ex:finetune    # Cache (Bootstrap-Files/View/Config/Routes/Events)
 ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 ```
 
@@ -53,6 +53,7 @@ ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 > - composer dump-autoload
 > - php artisan optimize
 > - php artisan view:cache
+> - php artisan event:cache
 
 <br>
 
