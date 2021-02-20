@@ -82,3 +82,9 @@ ex:make        # Make (Controller/Model/Migration/Seeder/Route/View/Validation)
 >
 > - Views [y/N]
 >     - create a new folder in `resources/views/pages/ClassName/` + files for **'index/create/show/edit'**.
+
+<br>
+
+### Security
+
+If you discover any security-related issues, please email [ctf0-dev@protonmail.com](mailto:ctf0-dev@protonmail.com).
